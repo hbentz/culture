@@ -1,1 +1,7 @@
 Library/Artifacts/
+Temp/
+Library/ShaderCache/
+*.dll
+*.pdb
+*.cache
+*.log

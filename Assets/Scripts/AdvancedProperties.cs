@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIProperties : MonoBehaviour
+public class AdvancedProperties : MonoBehaviour
 {
     [SerializeField]
     private List<string> tags = new List<string>();

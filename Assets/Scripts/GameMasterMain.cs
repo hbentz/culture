@@ -22,6 +22,7 @@ public class GameMasterMain : MonoBehaviour
     public GameObject DragObject;
     public GameObject SnapObject;
     public RaycastHit cursorTargetHit;
+    public RaycastHit dragObjectHit;
 
     // Start is called before the first frame update
     void Start()
@@ -57,26 +58,64 @@ public class GameMasterMain : MonoBehaviour
                 DragObject = cursorTarget;
                 IsDragging = true;
                 
-                //TODO physically move the card towards the camera and scale it
+                // TODO physically move the card towards the camera and scale it
             }
         }
 
-        // If the player is click and dragging something
+        // While a drag is active
         if (IsDragging)
         {
-            Ray DraggingRay = Camera.main.ScreenPointToRay(new Vector3(DragObject.transform.position,,));
-            GameObject _cardTarget;
+            // TODO: Actually drag the object
 
-            /* TODO: 
-             * Drag object
-             * Check for where the card will snap to (_cardTarget)
-             * Update the UI with that info
-             * 
-             */
+            // Make a ray from the Origin of the DragObject pointing away from the camera
+            Ray _dragObjHeading = new Ray(DragObject.transform.position, DragObject.transform.position - Camera.main.transform.position);
+            bool _validNest = false;  // Holder to see if dragged objects will be nested
+
+            // See what the ray is coliding with 
+            if (Physics.Raycast(_dragObjHeading, out dragObjectHit, 1000))
+            {
+                // The intent is that all colliders are visual only so to access the actual object it's required to climb up a level
+                SnapObject = ObjectClimber(dragObjectHit.transform.gameObject);
+                
+                // Write that out into the UI
+                DebugOverlayText += "\n Cursor is over: " + SnapObject.name;
+
+                // Check if that's a valid nest
+                _validNest = VaidNest(DragObject, SnapObject);
+                if (_validNest)
+                {
+                    DebugOverlayText += "\n These objects can be nested together.";
+                }
+                else
+                {
+                    DebugOverlayText += "\n These objects CANNOT be nested together.";
+                }
+            }
+            
+            // Primary mouse is 0, context click is 1, middle click is 2
+            // If there is a mouseup during a drag
             if (Input.GetMouseButtonUp(0))
             {
-                SnapTo(DragObject.transform, _cardTarget.transform.position, new Vector3(0.0f, 0.3f, 0.0f));
+                // Stop the drag
                 IsDragging = false;
+                
+                // If the nesting is valid
+                if (_validNest)
+                {
+
+                }
+            }
+                
+                /* TODO: 
+                 * Drag object
+                 * Check for where the card will snap to (_cardTarget)
+                 * Update the UI with that info
+                 * 
+                 */
+                
+            {
+                SnapTo(DragObject.transform, _cardTarget.transform.position, new Vector3(0.0f, 0.3f, 0.0f));
+                
             }
         }
         

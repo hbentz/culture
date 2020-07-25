@@ -45,7 +45,7 @@ public class GameMasterMain : MonoBehaviour
             GameObject cursorTarget = ObjectClimber(cursorTargetHit.transform.gameObject);
 
             // Update the UI with info about the hovered element
-            DebugOverlayText = "" + cursorTarget.name + "\n";
+            DebugOverlayText += "\n Cursor is over: " + cursorTarget.name;
 
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
@@ -92,12 +92,6 @@ public class GameMasterMain : MonoBehaviour
              */
         HoverDebug.text = DebugOverlayText;
         }
-
-    void SnapTo(Transform Source, Vector3 Target, Vector3 Offset)
-    {
-        // Snaps Source to Target with an offset of Offset
-        Source.position = new Vector3(Target.x + Offset.x, Target.y + Offset.y, Target.z + Offset.z);
-    }
 
     GameObject ObjectClimber(GameObject Child)
     {

@@ -18,6 +18,7 @@ public class GameMasterMain : MonoBehaviour
     public bool IsDragging = false;
     public GameObject DragObject;
     public GameObject SnapObject;
+    public RaycastHit cursorTargetHit;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,6 @@ public class GameMasterMain : MonoBehaviour
     {
         // Figure out what the player it pointing at:
         Ray cursorDirection = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit cursorTargetHit;
 
         // Updates cursorTarget at the same time as checking for a collision - how handy!
         if (Physics.Raycast (cursorDirection, out cursorTargetHit, 1000))

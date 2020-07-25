@@ -99,36 +99,19 @@ public class GameMasterMain : MonoBehaviour
                 // Stop the drag
                 IsDragging = false;
                 
-                // If the nesting is valid
+                // If the nesting is valid nest them together and snap into place
                 if (_validNest)
                 {
-
+                    DragObject.transform.parent = SnapObject.transform;
+                    DragObject.transform.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    // Snap back to the card tray
                 }
             }
-                
-                /* TODO: 
-                 * Drag object
-                 * Check for where the card will snap to (_cardTarget)
-                 * Update the UI with that info
-                 * 
-                 */
-                
-            {
-                SnapTo(DragObject.transform, _cardTarget.transform.position, new Vector3(0.0f, 0.3f, 0.0f));
-                
-            }
         }
-        
-            /* TODO 
-             * On Mousedown
-             * Drag card in XZ
-             * On Mouseup
-             * If there is a dragged object
-             * Check if that object can be placed there
-             * If if can, figure out where the center is over
-             * and snap it to to there (over nothing goes to next)
-             * Otherwise snap it back to the original position
-             */
+
         HoverDebug.text = DebugOverlayText;
         }
 

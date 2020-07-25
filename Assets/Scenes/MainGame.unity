@@ -203,6 +203,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1693337851}
     m_Modifications:
+    - target: {fileID: 2861882144407054887, guid: 22ff0a032d33ac64398cc8ba98f9f635,
+        type: 3}
+      propertyPath: m_TagString
+      value: CardSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 7858623104954951676, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
       propertyPath: m_Name
@@ -1072,6 +1077,8 @@ MonoBehaviour:
   NumberTicks: 0
   HoverDebug: {fileID: 807072960}
   HoverItem: {fileID: 0}
+  IsDragging: 0
+  DragObject: {fileID: 0}
 --- !u!4 &1797825474
 Transform:
   m_ObjectHideFlags: 0

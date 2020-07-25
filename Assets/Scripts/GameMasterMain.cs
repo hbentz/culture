@@ -15,6 +15,9 @@ public class GameMasterMain : MonoBehaviour
 
     // Not sure if these should be public?
     public GameObject HoverItem;
+    public bool IsDragging = false;
+    public GameObject DragObject;
+    public GameObject SnapObject;
 
     // Start is called before the first frame update
     void Start()
@@ -26,23 +29,28 @@ public class GameMasterMain : MonoBehaviour
     {
         // Figure out what the player it pointing at:
         Ray cursorDirection = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit cursorTarget;
+        RaycastHit cursorTargetHit;
 
         // Updates cursorTarget at the same time as checking for a collision - how handy!
-        if (Physics.Raycast (cursorDirection, out cursorTarget, 1000))
+        if (Physics.Raycast (cursorDirection, out cursorTargetHit, 1000))
         {
-            
-            GameObject targetObject = cursorTarget.transform.gameObject;
             // I intend for all collider components to be attached to the visual mesh
-            // incase this isn't the case in the future, check to make sure it's collided
-            // with a visual instead of an actual object
-            if (targetObject.name == "Visuals")
-            {
-                targetObject = targetObject.transform.parent.gameObject;
-            }
-            HoverDebug.text = targetObject.name;
+            // so ObjectClimber isn't strictly necessary here, it is safer
+            GameObject cusorTarget = ObjectClimber(cursorTargetHit.transform.gameObject);
+
+            // Update the UI with info about the hovered element
+            HoverDebug.text = cusorTarget.name;
         }
 
+        // Primary click 0, context click 1, middle click 2
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+
+        }
         /* TODO 
          * On Mousedown
          * Drag card in XZ
@@ -53,7 +61,20 @@ public class GameMasterMain : MonoBehaviour
          * and snap it to to there (over nothing goes to next)
          * Otherwise snap it back to the original position
          */
-        // Primary click 0, context click 1, middle click 2
-        // Input.GetMouseButtonDown(0)
+    }
+
+    void SnapTo(GameObject Source, GameObject Target, float ZOffset = 0.3f)
+    {
+
+    }
+
+    GameObject ObjectClimber(GameObject Child)
+    {
+        // Grabs the parent object if the object is a Visual
+        if (Child.name == "Visuals")
+        {
+            Child = Child.transform.parent.gameObject;
+        }
+        return Child;
     }
 }

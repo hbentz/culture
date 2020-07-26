@@ -75,6 +75,7 @@ public class AdvancedProperties : MonoBehaviour
 
     public bool TryHostObject(GameObject Child, Vector3 Offset, bool IsTest = false)
     {
+        // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT 
         IEnumerable<string> SharedTags = Child.GetComponent<AdvancedProperties>().GetResrouceTypeTags().Intersect(GetHostableResources());
         // If there aren't any common entries between the ResrouceTypeTags of the Child and this one 
         if (!SharedTags.Any())

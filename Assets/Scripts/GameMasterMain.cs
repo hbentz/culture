@@ -51,11 +51,6 @@ public class GameMasterMain : MonoBehaviour
                 // DragObject being a reference to cursorTarget does not currently matter
                 // because for as long as the player is dragging the card, the raycast will hit it
                 DragObject = cursorTarget;
-                
-                // Hold it under this game object unitl it can go back to it's own home
-                // TODO: NEED TO UNEST FROM ORIGINAL PARENT FIRST
-                DragObject.transform.parent = this.transform;
-
                 IsDragging = true;
                 Debug.Log("Set " + DragObject.name + " to drag mode.");
             }

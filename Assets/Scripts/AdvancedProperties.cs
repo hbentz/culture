@@ -71,12 +71,12 @@ public class AdvancedProperties : MonoBehaviour
     public bool TryHostObject(GameObject Child, Vector3 Offset, bool IsTest = false)
     {
         IEnumerable<string> SharedTags = Child.GetComponent<AdvancedProperties>().GetGameTags().Intersect(GetGameTags());
-        Debug.Log(this.name + " and " + Child.name + "share " + SharedTags.Count().ToString() + "GameTags");
+        
         // If there aren't any common entries between the GameTags of the Child and this one 
         if (!SharedTags.Any())
         {
-            return false;
             Debug.Log("Can't host due to no shared features");
+            return false;
         }
         else
         {

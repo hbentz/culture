@@ -136,22 +136,35 @@ public class GameMasterMain : MonoBehaviour
             // If the parent is a Cardslot
             case ("CardSlot"):
                 {
-                    // Check its children for cards
-                    foreach (Transform childTransform in Parent.transform)
-                    {
-                        // If there is already one this is not a valid nes
-                        if (childTransform.gameObject.tag == "Card")
-                        {
-                            return false;
-                        }
-                    }
-                    // If there are no cards it IS a valid nest
-                    return true;
+                    // If the cardslot has more than 0 children with the Card tag
+                    return TagChecker(Parent, 0, "Card");
                 }
             default:
                 {
                     return false;
                 }
+        }
+    }
+    
+    bool TagChecker(GameObject Parent, int MaxCount = 0, string Tag = "Card")
+    {
+        // Returns false if there are more than MaxCount children with Tag Tag in Parent
+        int _counter = 0;
+        foreach (Transform childTransform in Parent.transform)
+        {
+            if (childTransform.gameObject.tag == Tag)
+            {
+                _counter++;
+            }
+        }
+
+        if (_counter <= MaxCount)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

@@ -46,7 +46,7 @@ public class GameMasterMain : MonoBehaviour
             GameObject cursorTarget = ObjectClimber(cursorTargetHit.transform.gameObject);
 
             // Update the UI with info about the hovered element
-            DebugOverlayText += "\n Cursor is over: " + cursorTarget.name;
+            DebugOverlayText += "\n" + " Cursor is over: " + cursorTarget.name;
 
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
@@ -78,17 +78,17 @@ public class GameMasterMain : MonoBehaviour
                 SnapObject = ObjectClimber(dragObjectHit.transform.gameObject);
                 
                 // Write that out into the UI
-                DebugOverlayText += "\n Card is over: " + SnapObject.name;
+                DebugOverlayText += "\n" + "Card is over: " + SnapObject.name;
 
                 // Check if that's a valid nest
                 _validNest = VaidNest(DragObject, SnapObject);
                 if (_validNest)
                 {
-                    DebugOverlayText += "\n These objects can be nested together.";
+                    DebugOverlayText += "\n" + "These objects can be nested together.";
                 }
                 else
                 {
-                    DebugOverlayText += "\n These objects CANNOT be nested together.";
+                    DebugOverlayText += "\n" + "These objects CANNOT be nested together.";
                 }
             }
             
@@ -114,7 +114,7 @@ public class GameMasterMain : MonoBehaviour
             }
         }
 
-        HoverDebug.text = DebugOverlayText;
+        HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
         }
 
     GameObject ObjectClimber(GameObject Child)

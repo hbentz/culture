@@ -140,10 +140,10 @@ public class GameMasterMain : MonoBehaviour
         // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT
         AdvancedProperties _childProperties = Child.GetComponent<AdvancedProperties>();
         AdvancedProperties _parentProperties = Parent.GetComponent<AdvancedProperties>();
-        IEnumerable<string> SharedTags = _childProperties.GetResrouceTypeTags().Intersect(_parentProperties.GetHostableResources());
+        IEnumerable<string> _sharedTags = _childProperties.GetResrouceTypeTags().Intersect(_parentProperties.GetHostableResources());
 
         // If there aren't any common entries between the ResrouceTypeTags of the Child and this one 
-        if (!SharedTags.Any())
+        if (!_sharedTags.Any())
         {
             Debug.Log("Can't host due to no shared features");
             return false;
@@ -151,7 +151,7 @@ public class GameMasterMain : MonoBehaviour
         else
         {
             // Otherwise iterate through the shared tags and see if somewhere exceeds
-            foreach (string tag in SharedTags)
+            foreach (string tag in _sharedTags)
             {
                 if (_parentProperties.HousingStatus[tag] >= _parentProperties.HousingMaxes[tag])
                 {
@@ -163,8 +163,21 @@ public class GameMasterMain : MonoBehaviour
             // The child object must now share at least one tag and will not overflow any housing capacities
             if (!IsTest)
             {
+                // Unhost the object from the previous parent
+                if (Child.transform.parent.TryGetComponent<AdvancedProperties>(out AdvancedProperties _oldParentProperties))
+                {
+                    IEnumerable<string> _oldSharedTags = _childProperties.GetResrouceTypeTags().Intersect(_oldParentProperties.GetHostableResources());
+
+                    // Decrement the old housing statuses
+                    foreach (string tag in _oldSharedTags)
+                    {
+                        _oldParentProperties.HousingStatus[tag]--;
+                    }
+                    Debug.Log("Unhost from " + Child.transform.parent.name + "successful");
+                }
+
                 // Increment the housing status
-                foreach (string tag in SharedTags)
+                foreach (string tag in _sharedTags)
                 {
                     _parentProperties.HousingStatus[tag]++;
                 }

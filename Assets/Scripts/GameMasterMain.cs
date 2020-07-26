@@ -50,7 +50,7 @@ public class GameMasterMain : MonoBehaviour
 
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
-            if (Input.GetMouseButtonDown(0) & cursorTargetHit.collider.tag == "Card")
+            if (Input.GetMouseButtonDown(0) & cursorTarget.tag == "Card")
             {
                 // Select that object and set it to drag
                 // DragObject being a reference to cursorTarget does not currently matter
@@ -58,7 +58,7 @@ public class GameMasterMain : MonoBehaviour
                 DragObject = cursorTarget;
                 IsDragging = true;
                 
-                // TODO physically move the card towards the camera and scale it
+                // TODO physically move the card towards the camera and scale it down
             }
         }
 
@@ -78,7 +78,7 @@ public class GameMasterMain : MonoBehaviour
                 SnapObject = ObjectClimber(dragObjectHit.transform.gameObject);
                 
                 // Write that out into the UI
-                DebugOverlayText += "\n Cursor is over: " + SnapObject.name;
+                DebugOverlayText += "\n Card is over: " + SnapObject.name;
 
                 // Check if that's a valid nest
                 _validNest = VaidNest(DragObject, SnapObject);
@@ -109,6 +109,8 @@ public class GameMasterMain : MonoBehaviour
                 {
                     // Snap back to the card tray
                 }
+
+                // TODO: Unscale the card
             }
         }
 

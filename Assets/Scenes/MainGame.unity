@@ -557,16 +557,16 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
+    m_Alignment: 3
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &807072961
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1202,7 +1202,7 @@ PrefabInstance:
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}

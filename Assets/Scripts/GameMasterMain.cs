@@ -102,6 +102,7 @@ public class GameMasterMain : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("Failed to host " + DragObject.name + " inside " + SnapObject.name);
                     //TODO: Snap back to the card tray
                 }
 

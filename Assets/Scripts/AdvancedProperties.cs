@@ -4,31 +4,69 @@ using UnityEngine;
 
 public class AdvancedProperties : MonoBehaviour
 {
+    
     [SerializeField]
-    private List<string> tags = new List<string>();
+    public List<string> HostableTags = new List<string>();
 
-    public bool HasTag(string tag)
+    [SerializeField]
+    public List<int> TagMaxes = new List<int>();  // Needs to be same size as Hostable Tags
+
+    [SerializeField]
+    public List<string> GameTags = new List<string>();
+
+    [SerializeField]
+    public List<string> UITags = new List<string>();
+
+    public int[] HousingStatus;
+
+    void Start()
     {
-        return tags.Contains(tag);
+        // Keep track of how many of each object this Gamobject is holding
+        HousingStatus = new int[HostableTags.Count];
+        int i = 0;  // HousingSatus Counter
+
+        // Go through each of the hostable tags
+        foreach (string HostableTag in HostableTags)
+        {
+            // Add to the HousingStatus the number of children with that tag
+            foreach (Transform _childTransform in this.transform)
+            {
+                AdvancedProperties _childProp = _childTransform.GetComponent<AdvancedProperties>();
+                if (_childProp != null)
+                {
+                    if (_childProp.HasGameTag(HostableTag))
+                    {
+                        HousingStatus[i]++;
+                    }
+                }
+            }
+            i++;
+        }
+
     }
 
-    public IEnumerable<string> GetTags()
+    public bool HasUITag(string tag)
     {
-        return tags;
+        return UITags.Contains(tag);
     }
 
-    public void Rename(int index, string tagName)
+    public bool HasGameTag(string tag)
     {
-        tags[index] = tagName;
+        return GameTags.Contains(tag);
     }
 
-    public string GetAtIndex(int index)
+    public IEnumerable<string> GetUITags()
     {
-        return tags[index];
+        return UITags;
     }
 
-    public int Count
+    public IEnumerable<string> GetGameTags()
     {
-        get { return tags.Count; }
+        return GameTags;
+    }
+
+    public bool HostObject(GameObject Child)
+    {
+        if 
     }
 }

@@ -12,8 +12,6 @@ using UnityEngine.UIElements;
 public class GameMasterMain : MonoBehaviour
 {
     public int PlayerIDTurn = 1;
-    public bool PlayerMouseButtonDown = false;
-    public int NumberTicks = 0;
     public Text HoverDebug;
 
     // Not sure if these should be public?
@@ -81,7 +79,7 @@ public class GameMasterMain : MonoBehaviour
                 DebugOverlayText += "\n" + "Card is over: " + SnapObject.name;
 
                 // Check if that's a valid nest
-                _validNest = VaidNest(DragObject, SnapObject);
+                _validNest = ValidNest(DragObject, SnapObject);
                 if (_validNest)
                 {
                     DebugOverlayText += "\n" + "These objects can be nested together.";
@@ -127,7 +125,7 @@ public class GameMasterMain : MonoBehaviour
         return Child;
     }
 
-    bool VaidNest(GameObject Child, GameObject Parent)
+    bool ValidNest(GameObject Child, GameObject Parent)
     {
         // Checks to see if an attempted nesting procedure is valid
         // Is this the best way to do this?

@@ -1044,10 +1044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableTags: []
+  HostableResources: []
   TagMaxes: 
-  GameTags: []
-  UITags: []
+  ResrouceTypeTags: []
+  PropertyTags: []
 --- !u!1 &1768393215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,21 +1170,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5805918953800802034, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 5805918953800802037, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5805918953800802037, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747604, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_Name
@@ -1203,7 +1188,7 @@ PrefabInstance:
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30
+      value: -29.72
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
@@ -1247,27 +1232,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a3ab04029ce894ea5543c4aa14bb91, type: 3}
---- !u!1 &5805918954677251266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5805918955383747604, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-    type: 3}
-  m_PrefabInstance: {fileID: 5805918954677251265}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5805918954677251267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805918954677251266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HostableTags: []
-  TagMaxes: 
-  GameTags:
-  - Card
-  UITags:
-  - Dragable

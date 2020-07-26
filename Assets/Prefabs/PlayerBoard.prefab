@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 30015452188720513}
   - component: {fileID: 1595227711}
   m_Layer: 0
-  m_Name: BasePlayerBoard
+  m_Name: PlayerBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableTags: []
+  HostableResources: []
   TagMaxes: 
-  GameTags: []
-  UITags: []
+  ResrouceTypeTags: []
+  PropertyTags: []
 --- !u!1 &30015452228757882
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,10 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableTags: []
+  HostableResources: []
   TagMaxes: 
-  GameTags: []
-  UITags: []
+  ResrouceTypeTags: []
+  PropertyTags: []
 --- !u!1 &30015453439835997
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,10 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableTags: []
+  HostableResources: []
   TagMaxes: 
-  GameTags: []
-  UITags: []
+  ResrouceTypeTags: []
+  PropertyTags: []
 --- !u!1 &30015453855838635
 GameObject:
   m_ObjectHideFlags: 0

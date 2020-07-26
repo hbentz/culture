@@ -55,6 +55,7 @@ public class GameMasterMain : MonoBehaviour
                 // because for as long as the player is dragging the card, the raycast will hit it
                 DragObject = cursorTarget;
                 IsDragging = true;
+                Debug.Log("Set " + DragObject.name + " to drag mode.");
                 
                 // TODO physically move the card towards the camera and scale it down
             }
@@ -87,27 +88,36 @@ public class GameMasterMain : MonoBehaviour
                     DebugOverlayText += "\n" + "These objects CANNOT be nested together.";
                 }
             }
-            
+
             // Primary mouse is 0, context click is 1, middle click is 2
             // If there is a mouseup during a drag
             if (Input.GetMouseButtonUp(0))
             {
                 // Stop the drag
                 IsDragging = false;
-                
-                // If the nesting is valid nest them together and snap into place
-                if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero))
+                Debug.Log("Released " + DragObject.name + " to drag mode.");
+
+                // If there is a target
+                if (dragObjectHit.collider != null)
                 {
-                    Debug.Log("Hosted " + DragObject.name + " inside " + SnapObject.name);
+                    // Check the nesting is valid nest them together and snap into place
+                    if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero))
+                    {
+                        Debug.Log("Hosted " + DragObject.name + " inside " + SnapObject.name);
+                    }
+                    else
+                    {
+                        Debug.Log("Failed to host " + DragObject.name + " inside " + SnapObject.name + " due to attach error.");
+                        //TODO: Snap back to object back to where it was
+                    }
                 }
                 else
                 {
-                    Debug.Log("Failed to host " + DragObject.name + " inside " + SnapObject.name);
-                    //TODO: Snap back to the card tray
+                    Debug.Log("Can't host " + DragObject.name + " inside null");
+                    //TODO: Snap the object back to where it was
                 }
-
-                // TODO: Unscale the card
             }
+                // TODO: Unscale the card
         }
 
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');

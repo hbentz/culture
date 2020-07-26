@@ -70,14 +70,17 @@ public class GameMasterMain : MonoBehaviour
             }
 
             // Make a ray from the Origin of the DragObject pointing away from the camera
+            // (DragObject.transform.position - Camera.main.transform.position) should be the same a cursor Direction for this purpose?
             Ray _dragObjHeading = new Ray(DragObject.transform.position, DragObject.transform.position - Camera.main.transform.position);
 
             // See what the ray is coliding with 
+            // TODO: On the first frame of card pickup. dragObjectHit is the visuals for the card.
             if (Physics.Raycast(_dragObjHeading, out RaycastHit dragObjectHit, 1000))
             {
                 // The intent is that all colliders are visual only so to access the actual object it's required to climb up a level
                 SnapObject = ObjectClimber(dragObjectHit.transform.gameObject);
-                
+                Debug.Log("Hit" + SnapObject.transform.name);
+
                 // Write that out into the UI
                 DebugOverlayText += "\n" + "Card is over: " + SnapObject.name;
 

@@ -45,7 +45,7 @@ public class GameMasterMain : MonoBehaviour
 
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
-            if (Input.GetMouseButtonDown(0) & cursorTarget.GetComponent<AdvancedProperties>().HasUITag("Dragable"))
+            if (Input.GetMouseButtonDown(0) & cursorTarget.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
             {
                 // Select that object and set it to drag
                 // DragObject being a reference to cursorTarget does not currently matter
@@ -53,6 +53,7 @@ public class GameMasterMain : MonoBehaviour
                 DragObject = cursorTarget;
                 
                 // Hold it under this game object unitl it can go back to it's own home
+                // TODO: NEED TO UNEST FROM ORIGINAL PARENT FIRST
                 DragObject.transform.parent = this.transform;
 
                 IsDragging = true;
@@ -85,7 +86,7 @@ public class GameMasterMain : MonoBehaviour
                 DebugOverlayText += "\n" + "Card is over: " + SnapObject.name;
 
                 // Check if that's a valid nest
-                if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero, true))
+                if (SnapObject.GetComponent<AdvancedProperties>().TryHostObject(DragObject, Vector3.zero, true))
                 {
                     DebugOverlayText += "\n" + "These objects can be nested together.";
                 }
@@ -107,7 +108,7 @@ public class GameMasterMain : MonoBehaviour
                 if (dragObjectHit.collider != null)
                 {
                     // Check the nesting is valid nest them together and snap into place
-                    if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero))
+                    if (SnapObject.GetComponent<AdvancedProperties>().TryHostObject(DragObject, Vector3.zero))
                     {
                         Debug.Log("Hosted " + DragObject.name + " inside " + SnapObject.name);
                     }

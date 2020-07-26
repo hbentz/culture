@@ -31,10 +31,10 @@ public class GameMasterMain : MonoBehaviour
         string DebugOverlayText = "";
 
         // Figure out what the player it pointing at:
-        Ray cursorDirection = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray cursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // Updates cursorTarget at the same time as checking for a collision - how handy!
-        if (Physics.Raycast (cursorDirection, out RaycastHit cursorTargetHit, 1000))
+        if (Physics.Raycast (cursorRay, out RaycastHit cursorTargetHit, 1000))
         {
             // I intend for all collider components to be attached to the visual mesh
             // so ObjectClimber isn't strictly necessary here, it is safer
@@ -64,17 +64,17 @@ public class GameMasterMain : MonoBehaviour
         if (IsDragging)
         {
             // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
-            if (DragPlane.Raycast(cursorDirection, out float DragSnapDist))
+            if (DragPlane.Raycast(cursorRay, out float DragSnapDist))
             {
-                DragObject.transform.position = cursorDirection.GetPoint(DragSnapDist);
+                DragObject.transform.position = cursorRay.GetPoint(DragSnapDist);
             }
 
             // Make a ray from the Origin of the DragObject pointing away from the camera
-            // (DragObject.transform.position - Camera.main.transform.position) should be the same a cursor Direction for this purpose?
-            Ray _dragObjHeading = new Ray(DragObject.transform.position, DragObject.transform.position - Camera.main.transform.position);
+            // (DragObject.transform.position - Camera.main.transform.position) should be the same a cursorRay.direction for this purpose?
+            Ray _dragObjHeading = new Ray(DragObject.transform.position, cursorRay.direction);
 
             // See what the ray is coliding with 
-            // TODO: On the first frame of card pickup. dragObjectHit is the visuals for the card.
+            // TODO: On the first frame of card pickup. dragObjectHit htis the visuals for the card.
             if (Physics.Raycast(_dragObjHeading, out RaycastHit dragObjectHit, 1000))
             {
                 // The intent is that all colliders are visual only so to access the actual object it's required to climb up a level

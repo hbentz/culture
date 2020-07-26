@@ -11,7 +11,7 @@ public class GameMasterMain : MonoBehaviour
 {
     public int PlayerIDTurn = 1;
     public Text HoverDebug;
-    public Plane DragPlane = new Plane(Vector3.up, 5.0f);
+    public Plane DragPlane = new Plane(Vector3.down, 5.0f);
 
     // Not sure if these should be public?
     public GameObject HoverItem;
@@ -51,24 +51,23 @@ public class GameMasterMain : MonoBehaviour
                 // DragObject being a reference to cursorTarget does not currently matter
                 // because for as long as the player is dragging the card, the raycast will hit it
                 DragObject = cursorTarget;
+                
+                // Hold it under this game object unitl it can go back to it's own home
+                DragObject.transform.parent = this.transform;
+
                 IsDragging = true;
                 Debug.Log("Set " + DragObject.name + " to drag mode.");
-
-                // Move the DragObject onto the DragPlane by figuring out where the ray from the mouse towards the scene intersects
-
-                if (DragPlane.Raycast(cursorDirection, out float DragSnapDist))
-                {
-                    DragObject.transform.position = cursorDirection.GetPoint(DragSnapDist);
-                }
-
-                // TODO physically move the card towards the camera and scale it down
             }
         }
 
         // While a drag is active
         if (IsDragging)
         {
-            // TODO: Actually drag the object
+            // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
+            if (DragPlane.Raycast(cursorDirection, out float DragSnapDist))
+            {
+                DragObject.transform.position = cursorDirection.GetPoint(DragSnapDist);
+            }
 
             // Make a ray from the Origin of the DragObject pointing away from the camera
             Ray _dragObjHeading = new Ray(DragObject.transform.position, DragObject.transform.position - Camera.main.transform.position);

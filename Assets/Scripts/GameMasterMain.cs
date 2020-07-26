@@ -103,26 +103,17 @@ public class GameMasterMain : MonoBehaviour
                 IsDragging = false;
                 Debug.Log("Released " + DragObject.name + " to drag mode.");
 
-                // If there is a target
-                if (dragObjectHit.collider != null)
+                // Check the nesting is valid nest them together and snap into place
+                if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero) & (dragObjectHit.collider != null))
                 {
-                    // Check the nesting is valid nest them together and snap into place
-                    if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero))
-                    {
-                        Debug.Log("Hosted " + DragObject.name + " inside " + SnapObject.name);
-                    }
-                    else
-                    {
-                        Debug.Log("Failed to host " + DragObject.name + " inside " + SnapObject.name + " due to attach error.");
-                        //TODO: Snap back to object back to where it was
-                    }
+                    Debug.Log("Hosted " + DragObject.name + " inside " + SnapObject.name);
                 }
                 else
                 {
-                    Debug.Log("Can't host " + DragObject.name + " inside null");
-                    //TODO: Snap the object back to where it was
+                    Debug.Log("Failed to host " + DragObject.name + " inside " + SnapObject.name + " due to attach error.");
+                    //TODO: Snap back to object back to where it was
                 }
-            }
+        }
         }
 
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');

@@ -138,4 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: []
+  HostableTags:
+  - Card
+  TagMaxes: 01000000
+  GameTags:
+  - CardSlot
+  UITags: []

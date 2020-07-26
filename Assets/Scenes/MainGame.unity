@@ -531,8 +531,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -292.5, y: 200}
-  m_SizeDelta: {x: -615, y: -400}
+  m_AnchoredPosition: {x: -192.5, y: 200}
+  m_SizeDelta: {x: -415, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &807072960
 MonoBehaviour:
@@ -895,6 +895,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
+        type: 3}
+      propertyPath: HostableTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
+        type: 3}
+      propertyPath: TagMaxes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
+        type: 3}
+      propertyPath: GameTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
+        type: 3}
+      propertyPath: HostableTags.Array.data[0]
+      value: Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
+        type: 3}
+      propertyPath: TagMaxes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
+        type: 3}
+      propertyPath: GameTags.Array.data[0]
+      value: CardSlot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fcd393a3493ad346908337e0f793689, type: 3}
 --- !u!1 &1657760352
@@ -1044,7 +1074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: []
+  HostableTags: []
+  TagMaxes: 
+  GameTags: []
+  UITags: []
 --- !u!1 &1768393215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,8 +1174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIDTurn: 1
-  PlayerMouseButtonDown: 0
-  NumberTicks: 0
   HoverDebug: {fileID: 807072960}
   HoverItem: {fileID: 0}
   IsDragging: 0
@@ -1264,4 +1295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: []
+  HostableTags: []
+  TagMaxes: 
+  GameTags:
+  - Card
+  UITags:
+  - Dragable

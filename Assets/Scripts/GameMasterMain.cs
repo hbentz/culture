@@ -48,7 +48,7 @@ public class GameMasterMain : MonoBehaviour
 
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
-            if (Input.GetMouseButtonDown(0) & cursorTarget.tag == "Card")
+            if (Input.GetMouseButtonDown(0) & cursorTarget.GetComponent<AdvancedProperties>().HasUITag("Draggable"))
             {
                 // Select that object and set it to drag
                 // DragObject being a reference to cursorTarget does not currently matter
@@ -79,8 +79,7 @@ public class GameMasterMain : MonoBehaviour
                 DebugOverlayText += "\n" + "Card is over: " + SnapObject.name;
 
                 // Check if that's a valid nest
-                _validNest = ValidNest(DragObject, SnapObject);
-                if (_validNest)
+                if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero, true))
                 {
                     DebugOverlayText += "\n" + "These objects can be nested together.";
                 }
@@ -98,14 +97,13 @@ public class GameMasterMain : MonoBehaviour
                 IsDragging = false;
                 
                 // If the nesting is valid nest them together and snap into place
-                if (_validNest)
+                if (DragObject.GetComponent<AdvancedProperties>().TryHostObject(SnapObject, Vector3.zero))
                 {
-                    DragObject.transform.parent = SnapObject.transform;
-                    DragObject.transform.localPosition = Vector3.zero;
+                    Debug.Log("Hosted " + DragObject.name + " inside " + SnapObject.name);
                 }
                 else
                 {
-                    // Snap back to the card tray
+                    //TODO: Snap back to the card tray
                 }
 
                 // TODO: Unscale the card
@@ -123,46 +121,5 @@ public class GameMasterMain : MonoBehaviour
             Child = Child.transform.parent.gameObject;
         }
         return Child;
-    }
-
-    bool ValidNest(GameObject Child, GameObject Parent)
-    {
-        // Checks to see if an attempted nesting procedure is valid
-        // Is this the best way to do this?
-        switch (Parent.tag)
-        {
-            // If the parent is a Cardslot
-            case ("CardSlot"):
-                {
-                    // If the cardslot has more than 0 children with the Card tag
-                    return TagChecker(Parent, 0, "Card");
-                }
-            default:
-                {
-                    return false;
-                }
-        }
-    }
-    
-    bool TagChecker(GameObject Parent, int MaxCount = 0, string Tag = "Card")
-    {
-        // Returns false if there are more than MaxCount children with Tag Tag in Parent
-        int _counter = 0;
-        foreach (Transform childTransform in Parent.transform)
-        {
-            if (childTransform.gameObject.tag == Tag)
-            {
-                _counter++;
-            }
-        }
-
-        if (_counter <= MaxCount)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }

@@ -5,22 +5,19 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Numerics;
-using Vector3 = UnityEngine.Vector3;
 using UnityEngine.UIElements;
 
 public class GameMasterMain : MonoBehaviour
 {
     public int PlayerIDTurn = 1;
     public Text HoverDebug;
+    public Plane DragPlane = new Plane(Vector3.up, 5.0f);
 
     // Not sure if these should be public?
     public GameObject HoverItem;
     public bool IsDragging = false;
     public GameObject DragObject;
     public GameObject SnapObject;
-    public RaycastHit cursorTargetHit;
-    public RaycastHit dragObjectHit;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +34,7 @@ public class GameMasterMain : MonoBehaviour
         Ray cursorDirection = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // Updates cursorTarget at the same time as checking for a collision - how handy!
-        if (Physics.Raycast (cursorDirection, out cursorTargetHit, 1000))
+        if (Physics.Raycast (cursorDirection, out RaycastHit cursorTargetHit, 1000))
         {
             // I intend for all collider components to be attached to the visual mesh
             // so ObjectClimber isn't strictly necessary here, it is safer
@@ -56,7 +53,14 @@ public class GameMasterMain : MonoBehaviour
                 DragObject = cursorTarget;
                 IsDragging = true;
                 Debug.Log("Set " + DragObject.name + " to drag mode.");
-                
+
+                // Move the DragObject onto the DragPlane by figuring out where the ray from the mouse towards the scene intersects
+
+                if (DragPlane.Raycast(cursorDirection, out float DragSnapDist))
+                {
+                    DragObject.transform.position = cursorDirection.GetPoint(DragSnapDist);
+                }
+
                 // TODO physically move the card towards the camera and scale it down
             }
         }
@@ -70,7 +74,7 @@ public class GameMasterMain : MonoBehaviour
             Ray _dragObjHeading = new Ray(DragObject.transform.position, DragObject.transform.position - Camera.main.transform.position);
 
             // See what the ray is coliding with 
-            if (Physics.Raycast(_dragObjHeading, out dragObjectHit, 1000))
+            if (Physics.Raycast(_dragObjHeading, out RaycastHit dragObjectHit, 1000))
             {
                 // The intent is that all colliders are visual only so to access the actual object it's required to climb up a level
                 SnapObject = ObjectClimber(dragObjectHit.transform.gameObject);

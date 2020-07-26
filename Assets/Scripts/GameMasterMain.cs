@@ -166,6 +166,7 @@ public class GameMasterMain : MonoBehaviour
                 // Unhost the object from the previous parent
                 if (Child.transform.parent.TryGetComponent<AdvancedProperties>(out AdvancedProperties _oldParentProperties))
                 {
+                    // TODO: Custom Unhost Functions
                     IEnumerable<string> _oldSharedTags = _childProperties.GetResrouceTypeTags().Intersect(_oldParentProperties.GetHostableResources());
 
                     // Decrement the old housing statuses

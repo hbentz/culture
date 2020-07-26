@@ -19,8 +19,8 @@ public class AdvancedProperties : MonoBehaviour
     public List<string> UITags = new List<string>();
 
     // Keeps track of how many of each object this Gamobject is holding
-    public Dictionary<string, int> HousingStatus;
-    public Dictionary<string, int> HousingMaxes;
+    public Dictionary<string, int> HousingStatus =  new Dictionary<string, int>();
+    public Dictionary<string, int> HousingMaxes = new Dictionary<string, int>();
 
     void Start()
     {
@@ -88,7 +88,7 @@ public class AdvancedProperties : MonoBehaviour
             }
 
             // The child object must now share at least one tag and will not overflow any housing capacities
-            if (AttachObject)
+            if (!IsTest)
             {
                 // Increment the housing status
                 foreach (string tag in SharedTags)

@@ -895,36 +895,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: HostableTags.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: TagMaxes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: GameTags.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: HostableTags.Array.data[0]
-      value: Card
-      objectReference: {fileID: 0}
-    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: TagMaxes.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7992737337771928802, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: GameTags.Array.data[0]
-      value: CardSlot
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fcd393a3493ad346908337e0f793689, type: 3}
 --- !u!1 &1657760352
@@ -1187,7 +1157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797825472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3832216, y: 3.1216888, z: 0.06103134}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

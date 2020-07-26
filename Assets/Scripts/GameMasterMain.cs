@@ -48,7 +48,7 @@ public class GameMasterMain : MonoBehaviour
 
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
-            if (Input.GetMouseButtonDown(0) & cursorTarget.GetComponent<AdvancedProperties>().HasUITag("Draggable"))
+            if (Input.GetMouseButtonDown(0) & cursorTarget.GetComponent<AdvancedProperties>().HasUITag("Dragable"))
             {
                 // Select that object and set it to drag
                 // DragObject being a reference to cursorTarget does not currently matter
@@ -67,7 +67,6 @@ public class GameMasterMain : MonoBehaviour
 
             // Make a ray from the Origin of the DragObject pointing away from the camera
             Ray _dragObjHeading = new Ray(DragObject.transform.position, DragObject.transform.position - Camera.main.transform.position);
-            bool _validNest = false;  // Holder to see if dragged objects will be nested
 
             // See what the ray is coliding with 
             if (Physics.Raycast(_dragObjHeading, out dragObjectHit, 1000))

@@ -72,46 +72,4 @@ public class AdvancedProperties : MonoBehaviour
     {
         return HostableResources;
     }
-
-    public bool TryHostObject(GameObject Child, Vector3 Offset, bool IsTest = false)
-    {
-        // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT 
-        IEnumerable<string> SharedTags = Child.GetComponent<AdvancedProperties>().GetResrouceTypeTags().Intersect(GetHostableResources());
-        // If there aren't any common entries between the ResrouceTypeTags of the Child and this one 
-        if (!SharedTags.Any())
-        {
-            Debug.Log("Can't host due to no shared features");
-            return false;
-        }
-        else
-        {
-            // Otherwise iterate through the shared tags and see if somewhere exceeds
-            foreach (string tag in SharedTags)
-            {
-                if (HousingStatus[tag] >= HousingMaxes[tag])
-                {
-                    Debug.Log("Can't host because it would exceed max housing for " + tag);
-                    return false;
-                }
-            }
-
-            // The child object must now share at least one tag and will not overflow any housing capacities
-            if (!IsTest)
-            {
-                // Increment the housing status
-                foreach (string tag in SharedTags)
-                {
-                    HousingStatus[tag]++;
-                }
-
-                // Attach the object and snap it to the offset
-                Child.transform.parent = this.transform;
-                Child.transform.localPosition = Offset;
-                Debug.Log("Sucessfully Hosted");
-            }
-
-            // Give the all clear
-            return true;
-        }
-    }
 }

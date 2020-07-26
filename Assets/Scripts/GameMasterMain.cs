@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using System.Linq;
 
 public class GameMasterMain : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class GameMasterMain : MonoBehaviour
     public GameObject HoverItem;
     public bool IsDragging = false;
     public GameObject DragObject;
-    public GameObject SnapObject;
+    public GameObject SnapToObject;
 
     // Start is called before the first frame update
     void Start()
@@ -74,14 +75,14 @@ public class GameMasterMain : MonoBehaviour
             if (Physics.Raycast(_dragObjHeading, out RaycastHit dragObjectHit, 1000))
             {
                 // The intent is that all colliders are visual only so to access the actual object it's required to climb up a level
-                SnapObject = ObjectClimber(dragObjectHit.transform.gameObject);
-                Debug.Log("Hit" + SnapObject.transform.name);
+                SnapToObject = ObjectClimber(dragObjectHit.transform.gameObject);
+                Debug.Log("Hit" + SnapToObject.transform.name);
 
                 // Write that out into the UI
-                DebugOverlayText += "\n" + "Card is over: " + SnapObject.name;
+                DebugOverlayText += "\n" + "Card is over: " + SnapToObject.name;
 
                 // Check if that's a valid nest
-                if (SnapObject.GetComponent<AdvancedProperties>().TryHostObject(DragObject, Vector3.zero, true))
+                if (TryHostObject(DragObject, SnapToObject, Vector3.zero, true))
                 {
                     DebugOverlayText += "\n" + "These objects can be nested together.";
                 }
@@ -103,20 +104,20 @@ public class GameMasterMain : MonoBehaviour
                 if (dragObjectHit.collider != null)
                 {
                     // Check the nesting is valid nest them together and snap into place
-                    if (SnapObject.GetComponent<AdvancedProperties>().TryHostObject(DragObject, Vector3.zero))
+                    if (TryHostObject(DragObject, SnapToObject, Vector3.zero))
                     {
-                        Debug.Log("Hosted " + DragObject.name + " inside " + SnapObject.name);
+                        Debug.Log("Hosted " + DragObject.name + " inside " + SnapToObject.name);
                     }
                     else
                     {
-                        Debug.Log("Failed to host " + DragObject.name + " inside " + SnapObject.name + " due to attach error.");
-                        //TODO: Snap back to object back to where it was
+                        Debug.Log("Failed to host " + DragObject.name + " inside " + SnapToObject.name + " due to attach error.");
+                        DragObject.transform.localPosition = Vector3.zero;  // TODO: Exception for returning to original hand
                     }
                 }
                 else
                 {
                     Debug.Log("Can't host " + DragObject.name + " inside null");
-                    //TODO: Snap the object back to where it was
+                    DragObject.transform.localPosition = Vector3.zero;  // TODO: Exception for returning to original hand
                 }
             }
         }
@@ -132,5 +133,50 @@ public class GameMasterMain : MonoBehaviour
             Child = Child.transform.parent.gameObject;
         }
         return Child;
+    }
+
+    public bool TryHostObject(GameObject Child, GameObject Parent, Vector3 Offset, bool IsTest = false)
+    {
+        // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT
+        AdvancedProperties _childProperties = Child.GetComponent<AdvancedProperties>();
+        AdvancedProperties _parentProperties = Parent.GetComponent<AdvancedProperties>();
+        IEnumerable<string> SharedTags = _childProperties.GetResrouceTypeTags().Intersect(_parentProperties.GetHostableResources());
+
+        // If there aren't any common entries between the ResrouceTypeTags of the Child and this one 
+        if (!SharedTags.Any())
+        {
+            Debug.Log("Can't host due to no shared features");
+            return false;
+        }
+        else
+        {
+            // Otherwise iterate through the shared tags and see if somewhere exceeds
+            foreach (string tag in SharedTags)
+            {
+                if (_parentProperties.HousingStatus[tag] >= _parentProperties.HousingMaxes[tag])
+                {
+                    Debug.Log("Can't host because it would exceed max housing for " + tag);
+                    return false;
+                }
+            }
+
+            // The child object must now share at least one tag and will not overflow any housing capacities
+            if (!IsTest)
+            {
+                // Increment the housing status
+                foreach (string tag in SharedTags)
+                {
+                    _parentProperties.HousingStatus[tag]++;
+                }
+
+                // Attach the object and snap it to the offset
+                Child.transform.parent = Parent.transform;
+                Child.transform.localPosition = Offset;
+                Debug.Log("Sucessfully Hosted");
+            }
+
+            // Give the all clear
+            return true;
+        }
     }
 }

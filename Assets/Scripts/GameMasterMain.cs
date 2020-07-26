@@ -123,7 +123,6 @@ public class GameMasterMain : MonoBehaviour
                     //TODO: Snap the object back to where it was
                 }
             }
-                // TODO: Unscale the card
         }
 
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');

@@ -1292,6 +1292,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1797825474}
     m_Modifications:
+    - target: {fileID: 3683262010949023750, guid: a1a3ab04029ce894ea5543c4aa14bb91,
+        type: 3}
+      propertyPath: GameMaster
+      value: 
+      objectReference: {fileID: 1797825472}
     - target: {fileID: 5805918955383747604, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_Name
@@ -1351,16 +1356,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8238450955996695374, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: ResourceTypeTags.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8238450955996695374, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: ResourceTypeTags.Array.data[0]
-      value: Card
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a3ab04029ce894ea5543c4aa14bb91, type: 3}

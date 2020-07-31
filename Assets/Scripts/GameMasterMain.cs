@@ -210,8 +210,14 @@ public class GameMasterMain : MonoBehaviour
             return true;
         }
     }
+    
     public void GenericDrag(GameObject DragObject)
     {
-        // Do drag stuff
+        // TODO: Drag logic with the plane from above
+    }
+
+    public void GenericRelease(GameObject DragObject)
+    {
+        // TODO: Release logic from above
     }
 }

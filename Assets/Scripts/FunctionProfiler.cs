@@ -16,7 +16,7 @@ public class FunctionProfiler : MonoBehaviour
             TestFunction();
             counter++;
         }
-        Debug.Log(counter)
+        Debug.Log(counter);
     }
 
     static void TestFunction()

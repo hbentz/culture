@@ -10,6 +10,9 @@ using System.Linq;
 
 public class GameMasterMain : MonoBehaviour
 {
+    // Prevents additional instances of GameMasterMain
+    public static GameMasterMain Instance;
+    
     public int PlayerIDTurn = 1;
     public Text HoverDebug;
     public Plane DragPlane = new Plane(Vector3.down, 5.0f);
@@ -19,6 +22,12 @@ public class GameMasterMain : MonoBehaviour
     public bool IsDragging = false;
     public GameObject DragObject;
     public GameObject SnapToObject;
+
+    // Awake runs before start
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -135,6 +144,14 @@ public class GameMasterMain : MonoBehaviour
         return Child;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Child"></param>
+    /// <param name="Parent"></param>
+    /// <param name="Offset"></param>
+    /// <param name="IsTest"></param>
+    /// <returns>false if objects cannot be hosted together, or have failed </returns>
     public bool HostObject(GameObject Child, GameObject Parent, Vector3 Offset, bool IsTest = false)
     {
         // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT
@@ -192,5 +209,9 @@ public class GameMasterMain : MonoBehaviour
             // Give the all clear
             return true;
         }
+    }
+    public void GenericDrag(GameObject DragObject)
+    {
+        // Do drag stuff
     }
 }

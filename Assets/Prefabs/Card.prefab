@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5805918955383747607}
   - component: {fileID: 8238450955996695374}
+  - component: {fileID: 3683262010949023750}
   m_Layer: 0
   m_Name: Card
   m_TagString: Card
@@ -139,7 +140,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HostableResources: []
   TagMaxes: 
-  ResrouceTypeTags:
+  ResourceTypeTags:
   - Card
   PropertyTags:
   - Dragable
+--- !u!114 &3683262010949023750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805918955383747604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bcf6bb9891ada42aa5e67cc3000e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameMaster: {fileID: 0}

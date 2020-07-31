@@ -13,7 +13,7 @@ public class AdvancedProperties : MonoBehaviour
     public List<int> TagMaxes = new List<int>();  // Needs to be same size and order as Hostable Tags
 
     [SerializeField]
-    public List<string> ResrouceTypeTags = new List<string>();
+    public List<string> ResourceTypeTags = new List<string>();
 
     [SerializeField]
     public List<string> PropertyTags = new List<string>();
@@ -55,7 +55,7 @@ public class AdvancedProperties : MonoBehaviour
 
     public bool HasGameTag(string tag)
     {
-        return ResrouceTypeTags.Contains(tag);
+        return ResourceTypeTags.Contains(tag);
     }
 
     public IEnumerable<string> GetPropertyTags()
@@ -65,7 +65,7 @@ public class AdvancedProperties : MonoBehaviour
 
     public IEnumerable<string> GetResrouceTypeTags()
     {
-        return ResrouceTypeTags;
+        return ResourceTypeTags;
     }
 
     public IEnumerable<string> GetHostableResources()

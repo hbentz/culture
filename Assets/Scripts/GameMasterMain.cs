@@ -70,12 +70,6 @@ public class GameMasterMain : MonoBehaviour
         // While a drag is active
         if (IsDragging)
         {
-            // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
-            if (DragPlane.Raycast(cursorRay, out float DragSnapDist))
-            {
-                DragObject.transform.position = cursorRay.GetPoint(DragSnapDist);
-            }
-
             // Make a ray from the Origin of the DragObject pointing away from the camera
             // (DragObject.transform.position - Camera.main.transform.position) should be the same a cursorRay.direction for this purpose?
             Ray _dragObjHeading = new Ray(DragObject.transform.position, CursorRay.direction);
@@ -212,9 +206,23 @@ public class GameMasterMain : MonoBehaviour
         }
     }
     
-    public void GenericDrag(GameObject DragObject)
+    /// <summary>
+    /// Intented to be the default drag option for components using the EventSysyem
+    /// </summary>
+    /// <param name="EventDragObject">GameObject that is being dragged</param>
+    public void GenericDrag(GameObject EventDragObject)
     {
-        // TODO: Drag logic with the plane from above
+        // Climb up the object to gain access to the parent class
+        // as all components found by the EvenSystem will be collision meshes
+        EventDragObject = ObjectClimber(EventDragObject);
+
+        // TODO: Check if the object is allowed to be dragged
+
+        // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
+        if (DragPlane.Raycast(CursorRay, out float DragSnapDist))
+        {
+            EventDragObject.transform.position = CursorRay.GetPoint(DragSnapDist);
+        }
     }
 
     public void GenericRelease(GameObject DragObject)

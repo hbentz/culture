@@ -9,4 +9,8 @@ public class EventFeeder : MonoBehaviour
     {
         GameMasterMain.Instance.GenericDrag(this.transform.gameObject);
     }
+    void OnMouseUpAsButton()
+    {
+        GameMasterMain.Instance.GenericRelease(this.transform.gameObject);
+    }
 }

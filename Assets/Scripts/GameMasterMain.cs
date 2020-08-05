@@ -22,6 +22,7 @@ public class GameMasterMain : MonoBehaviour
     public bool IsDragging = false;
     public GameObject DragObject;
     public GameObject SnapToObject;
+    public Ray CursorRay;
 
     // Awake runs before start
     private void Awake()
@@ -41,10 +42,10 @@ public class GameMasterMain : MonoBehaviour
         string DebugOverlayText = "";
 
         // Figure out what the player it pointing at:
-        Ray cursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // Updates cursorTarget at the same time as checking for a collision - how handy!
-        if (Physics.Raycast (cursorRay, out RaycastHit cursorTargetHit, 1000))
+        if (Physics.Raycast (CursorRay, out RaycastHit cursorTargetHit, 1000))
         {
             // I intend for all collider components to be attached to the visual mesh
             // so ObjectClimber isn't strictly necessary here, it is safer
@@ -77,7 +78,7 @@ public class GameMasterMain : MonoBehaviour
 
             // Make a ray from the Origin of the DragObject pointing away from the camera
             // (DragObject.transform.position - Camera.main.transform.position) should be the same a cursorRay.direction for this purpose?
-            Ray _dragObjHeading = new Ray(DragObject.transform.position, cursorRay.direction);
+            Ray _dragObjHeading = new Ray(DragObject.transform.position, CursorRay.direction);
 
             // See what the ray is coliding with 
             // TODO: On the first frame of card pickup. dragObjectHit htis the visuals for the card.

@@ -216,12 +216,14 @@ public class GameMasterMain : MonoBehaviour
         // as all components found by the EvenSystem will be collision meshes
         _eventDragObject = ObjectClimber(_eventDragObject);
 
-        // TODO: Check if the object is allowed to be dragged
-
-        // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
-        if (DragPlane.Raycast(CursorRay, out float DragSnapDist))
+        // Only drag the object if it has the tag that allows it
+        if (_eventDragObject.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
         {
-            EventDragObject.transform.position = CursorRay.GetPoint(DragSnapDist);
+            // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
+            if (DragPlane.Raycast(CursorRay, out float DragSnapDist))
+            {
+                _eventDragObject.transform.position = CursorRay.GetPoint(DragSnapDist);
+            }
         }
     }
 

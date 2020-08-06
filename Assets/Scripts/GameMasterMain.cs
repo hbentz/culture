@@ -210,24 +210,24 @@ public class GameMasterMain : MonoBehaviour
     /// Intented to be the default drag option for components using the EventSysyem
     /// </summary>
     /// <param name="EventDragObject">GameObject that is being dragged</param>
-    public void GenericDrag(GameObject _eventDragObject)
+    public void GenericDrag(GameObject _eventGameObject)
     {
         // Climb up the object to gain access to the parent class
         // as all components found by the EvenSystem will be collision meshes
-        _eventDragObject = ObjectClimber(_eventDragObject);
+        _eventGameObject = ObjectClimber(_eventGameObject);
 
         // Only drag the object if it has the tag that allows it
-        if (_eventDragObject.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
+        if (_eventGameObject.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
         {
             // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
             if (DragPlane.Raycast(CursorRay, out float DragSnapDist))
             {
-                _eventDragObject.transform.position = CursorRay.GetPoint(DragSnapDist);
+                _eventGameObject.transform.position = CursorRay.GetPoint(DragSnapDist);
             }
         }
     }
 
-    public void GenericRelease(GameObject _eventDragObject)
+    public void GenericRelease(GameObject _eventGameObject)
     {
         // TODO: Release logic from above
     }

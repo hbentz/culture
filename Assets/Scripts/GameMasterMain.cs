@@ -210,11 +210,11 @@ public class GameMasterMain : MonoBehaviour
     /// Intented to be the default drag option for components using the EventSysyem
     /// </summary>
     /// <param name="EventDragObject">GameObject that is being dragged</param>
-    public void GenericDrag(GameObject EventDragObject)
+    public void GenericDrag(GameObject _eventDragObject)
     {
         // Climb up the object to gain access to the parent class
         // as all components found by the EvenSystem will be collision meshes
-        EventDragObject = ObjectClimber(EventDragObject);
+        _eventDragObject = ObjectClimber(_eventDragObject);
 
         // TODO: Check if the object is allowed to be dragged
 
@@ -225,7 +225,7 @@ public class GameMasterMain : MonoBehaviour
         }
     }
 
-    public void GenericRelease(GameObject DragObject)
+    public void GenericRelease(GameObject _eventDragObject)
     {
         // TODO: Release logic from above
     }

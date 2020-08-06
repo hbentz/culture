@@ -206,8 +206,19 @@ public class GameMasterMain : MonoBehaviour
         }
     }
     
+    public void GenericHover(GameObject _eventGameObject)
+    {
+        // TODO: Put hover logic from above here
+    }
+    
+    public void GenericPickup(GameObject _eventGameObject)
+    {
+        // TODO: Put onclick logic from above
+    }
+
     /// <summary>
     /// Intented to be the default drag option for components using the EventSysyem
+    /// Simply snaps the object to the cursor position if it's dragable
     /// </summary>
     /// <param name="EventDragObject">GameObject that is being dragged</param>
     public void GenericDrag(GameObject _eventGameObject)

@@ -198,6 +198,7 @@ public class GameMasterMain : MonoBehaviour
                 // Attach the object and snap it to the offset
                 Child.transform.parent = Parent.transform;
                 Child.transform.localPosition = Offset;
+                Child.GetComponent<AudioSource>().Play();
                 Debug.Log("Sucessfully Hosted");
             }
 

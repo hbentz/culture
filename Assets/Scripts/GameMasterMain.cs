@@ -223,10 +223,6 @@ public class GameMasterMain : MonoBehaviour
     /// <param name="EventDragObject">GameObject that is being dragged</param>
     public void GenericDrag(GameObject _eventGameObject)
     {
-        // Climb up the object to gain access to the parent class
-        // as all components found by the EvenSystem will be collision meshes
-        _eventGameObject = ObjectClimber(_eventGameObject);
-
         // Only drag the object if it has the tag that allows it
         if (_eventGameObject.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
         {

@@ -45,7 +45,7 @@ public class GameMasterMain : MonoBehaviour
         CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // Updates cursorTarget at the same time as checking for a collision - how handy!
-        if (Physics.Raycast (CursorRay, out RaycastHit cursorTargetHit, 1000))
+        if (Physics.Raycast(CursorRay, out RaycastHit cursorTargetHit, 1000))
         {
             // I intend for all collider components to be attached to the visual mesh
             // so ObjectClimber isn't strictly necessary here, it is safer
@@ -53,10 +53,10 @@ public class GameMasterMain : MonoBehaviour
 
             // Update the UI with info about the hovered element
             DebugOverlayText += "\n" + " Cursor is over: " + cursorTarget.name;
-
+            
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
-            if (Input.GetMouseButtonDown(0) & cursorTarget.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
+            if (Input.GetMouseButtonDown(0) && cursorTarget.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
             {
                 // Select that object and set it to drag
                 // DragObject being a reference to cursorTarget does not currently matter

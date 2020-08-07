@@ -56,6 +56,7 @@ public class GameMasterMain : MonoBehaviour
             
             // If the player has clicked on a card
             // Primary click 0, context click 1, middle click 2
+            // && stops execution if the first evaluation is false
             if (Input.GetMouseButtonDown(0) && cursorTarget.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
             {
                 // Select that object and set it to drag

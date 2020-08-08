@@ -6,11 +6,14 @@ using UnityEngine.UIElements;
 
 public class GameProperties : MonoBehaviour
 {
-    // Audio handling
+    // Settable Audio properties
     public AudioClip PickUpSound;
     public AudioClip PlaceSound;
 
-    // Game Rule info
+    // Settable Appearance Info
+    public float ChildrenYOffset; // TODO: Use in RearrangeChildren()
+
+    // Settable Game Rule info
     public List<string> ResourceTypes = new List<string>();  // The kinds of resource is this object
     public List<string> HostableResources = new List<string>();  // What resources can be hosted on this
     public List<int> ResourceMaxes = new List<int>();  // How of those resources can be hosted (needs to be same size)
@@ -22,8 +25,8 @@ public class GameProperties : MonoBehaviour
     public List<GameObject> HostedChildren = new List<GameObject>();
 
     // Game interaction settings
-    public bool IsDragable = false;
-    public bool IsDragging = false;
+    public bool IsDragable = false;  // General setting for being locked in
+    public bool IsDragging = false;  // Setting to know if this is being held by player
 
     void Start()
     {

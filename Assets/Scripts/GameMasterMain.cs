@@ -31,6 +31,7 @@ public class GameMasterMain : MonoBehaviour
     // Awake runs before start
     private void Awake()
     {
+        // Creates the one and only instance of GameMasterMain
         Instance = this;
     }
 
@@ -147,7 +148,8 @@ public class GameMasterMain : MonoBehaviour
                 // TODO: Trigger an OnHoverObjectOver(GameObject) custom event from LastNestObject
 
                 LastNestInfo = "\n" + "Card is over: " + LastNestObject.name;
-                LastNestPossible = HostChildOnParent(DragObject, LastNestObject, Vector3.zero, true);
+                // LastNestPossible = true if LastNestObject has Gameproperties and it can host DragObject
+                LastNestPossible = LastNestObject.TryGetComponent<GameProperties>(out GameProperties _objProp) && _objProp.CanHost(DragObject);
                 LastNestInfo += "\n" + "These objects ";
                 LastNestInfo += LastNestPossible ? "CAN" : "CANNOT";
                 LastNestInfo += " be nested together.";

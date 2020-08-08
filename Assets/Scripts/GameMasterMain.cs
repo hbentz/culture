@@ -192,7 +192,12 @@ public class GameMasterMain : MonoBehaviour
         MouseOverName = "\n" + " Cursor last over: " + _eventGameObject.name;
         // TODO: Add some more detailed info
     }
-    
+
+    public void GenericUnHover(GameObject _eventGameObject)
+    {
+        // TODO: remove detailed info
+    }
+
     public void GenericPickup(GameObject _eventGameObject)
     {
         // TODO: Put onclick logic from above
@@ -218,6 +223,7 @@ public class GameMasterMain : MonoBehaviour
 
     public void GenericRelease(GameObject _eventGameObject)
     {
+        IsDragging = false;
         // TODO: Release logic from above
     }
 }

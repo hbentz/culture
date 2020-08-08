@@ -10,15 +10,22 @@ public class CardBehaivors : MonoBehaviour
     {
     }
 
-    void OnMouseOver()
+    private void OnMouseOver()
     {
         GameMasterMain.Instance.GenericHover(this.transform.gameObject);
     }
-    void OnMouseDown()
+    private void OnMouseExit()
+    {
+    }
+    private void OnMouseDown()
     {
         GameMasterMain.Instance.GenericPickup(this.transform.gameObject);
     }
-    void OnMouseDrag()
+    private void OnMouseUpAsButton()
+    {
+        GameMasterMain.Instance.GenericRelease(this.transform.gameObject);
+    }
+    private void OnMouseDrag()
     {
         GameMasterMain.Instance.GenericDrag(this.transform.gameObject);
     }

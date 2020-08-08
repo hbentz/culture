@@ -22,7 +22,6 @@ public class GameMasterMain : MonoBehaviour
     public string LastNestInfo = "";
     public string NestInfo = "";
     public bool LastNestPossible = false;
-    public bool InDragMode = false;
 
     public GameObject HoverItem;
     public GameObject DragObject;
@@ -96,7 +95,6 @@ public class GameMasterMain : MonoBehaviour
             // Set it into dragging mode and give GameMasterMain access to it
             _eventGameObject.GetComponent<GameProperties>().IsDragging = true;
             DragObject = _eventGameObject;
-            InDragMode = true;
             // TODO: trigger OnPickup() from _eventGameObject
         }
     }
@@ -107,9 +105,10 @@ public class GameMasterMain : MonoBehaviour
     /// <param name="_eventGameObject">GameObject that fired OnMouseUpAsButton()</param>
     public void GenericRelease(GameObject _eventGameObject)
     {
-        if (InDragMode)
+        GameProperties _objProps = _eventGameObject.GetComponent<GameProperties>();
+        if (_objProps.IsDragging)
         {
-            InDragMode = false;
+            _objProps.IsDragging = false;
 
             if (LastNestPossible)
             {

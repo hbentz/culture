@@ -192,7 +192,7 @@ public class GameProperties : MonoBehaviour
         // Attach the child to this object and snap it to the original locaiton offset
         _child.transform.parent = this.transform;
         HostedChildren.Add(_child);
-        GetComponent<AudioSource>().PlayOneShot(PlaceSound);
+        _child.GetComponent<AudioSource>().PlayOneShot(_child.GetComponent<GameProperties>().PlaceSound);
         return true;
     }
 }

@@ -65,7 +65,7 @@ public class GameMasterMain : MonoBehaviour
                 DebugOverlayText += "\n" + "Card is over: " + SnapToObject.name;
 
                 // Check if that's a valid nest
-                if (HostObject(DragObject, SnapToObject, Vector3.zero, true))
+                if (HostChildOnParent(DragObject, SnapToObject, Vector3.zero, true))
                 {
                     DebugOverlayText += "\n" + "These objects can be nested together.";
                 }
@@ -87,7 +87,7 @@ public class GameMasterMain : MonoBehaviour
                 if (dragObjectHit.collider != null)
                 {
                     // Check the nesting is valid nest them together and snap into place
-                    if (HostObject(DragObject, SnapToObject, Vector3.zero))
+                    if (HostChildOnParent(DragObject, SnapToObject, Vector3.zero))
                     {
                         Debug.Log("Hosted " + DragObject.name + " inside " + SnapToObject.name);
                     }
@@ -127,7 +127,7 @@ public class GameMasterMain : MonoBehaviour
     /// <param name="Offset"></param>
     /// <param name="IsTest"></param>
     /// <returns>false if objects cannot be hosted together, or have failed </returns>
-    public bool HostObject(GameObject Child, GameObject Parent, Vector3 Offset, bool IsTest = false)
+    public bool HostChildOnParent(GameObject Child, GameObject Parent, Vector3 Offset, bool IsTest = false)
     {
         // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT
         AdvancedProperties _childProperties = Child.GetComponent<AdvancedProperties>();

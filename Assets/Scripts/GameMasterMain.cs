@@ -213,7 +213,15 @@ public class GameMasterMain : MonoBehaviour
     /// <param name="_eventGameObject">GameObject that fired OnMouseDown()</param>
     public void GenericPickup(GameObject _eventGameObject)
     {
-        // TODO: Put onclick logic from above
+        // If the item can be dragged
+        if (_eventGameObject.GetComponent<AdvancedProperties>().IsDragable)
+        {
+            // Set it into dragging mode and give GameMasterMain access to it
+            _eventGameObject.GetComponent<AdvancedProperties>().IsDragging = true;
+            DragObject = _eventGameObject;
+        }
+    }
+
     /// <summary>
     /// Hosts _eventGameObject on object it's hovering over if possible
     /// </summary>
@@ -231,7 +239,7 @@ public class GameMasterMain : MonoBehaviour
     public void GenericDrag(GameObject _eventGameObject)
     {
         // Only drag the object if it has the tag that allows it
-        if (_eventGameObject.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
+        if (_eventGameObject.GetComponent<AdvancedProperties>().IsDragging)
         {
             // Move the _eventGameObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
             if (DragPlane.Raycast(CursorRay, out float DragSnapDist))

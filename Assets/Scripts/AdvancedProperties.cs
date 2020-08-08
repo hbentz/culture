@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AdvancedProperties : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class AdvancedProperties : MonoBehaviour
     // Keeps track of how many of each object this Gamobject is holding
     public Dictionary<string, int> HousingStatus =  new Dictionary<string, int>();
     public Dictionary<string, int> HousingMaxes = new Dictionary<string, int>();
+
+    // This is used frequently enough it's justified to have it's own setting
+    public bool IsDragable = false;
+    public bool IsDragging = false;
 
     void Start()
     {

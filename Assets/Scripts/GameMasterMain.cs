@@ -17,6 +17,8 @@ public class GameMasterMain : MonoBehaviour
     public Text HoverDebug;
     public Plane DragPlane = new Plane(Vector3.down, 5.0f);
 
+    public string MouseOverName = "";
+
     // Not sure if these should be public?
     public GameObject HoverItem;
     public bool IsDragging = false;
@@ -43,30 +45,6 @@ public class GameMasterMain : MonoBehaviour
 
         // Figure out what the player it pointing at:
         CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        // Updates cursorTarget at the same time as checking for a collision - how handy!
-        if (Physics.Raycast(CursorRay, out RaycastHit cursorTargetHit, 1000))
-        {
-            // I intend for all collider components to be attached to the visual mesh
-            // so ObjectClimber isn't strictly necessary here, it is safer
-            GameObject cursorTarget = ObjectClimber(cursorTargetHit.transform.gameObject);
-
-            // Update the UI with info about the hovered element
-            DebugOverlayText += "\n" + " Cursor is over: " + cursorTarget.name;
-            
-            // If the player has clicked on a card
-            // Primary click 0, context click 1, middle click 2
-            // && stops execution if the first evaluation is false
-            if (Input.GetMouseButtonDown(0) && cursorTarget.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
-            {
-                // Select that object and set it to drag
-                // DragObject being a reference to cursorTarget does not currently matter
-                // because for as long as the player is dragging the card, the raycast will hit it
-                DragObject = cursorTarget;
-                IsDragging = true;
-                Debug.Log("Set " + DragObject.name + " to drag mode.");
-            }
-        }
 
         // While a drag is active
         if (IsDragging)
@@ -127,6 +105,7 @@ public class GameMasterMain : MonoBehaviour
             }
         }
 
+        DebugOverlayText += MouseOverName;
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
         }
 
@@ -210,7 +189,8 @@ public class GameMasterMain : MonoBehaviour
     
     public void GenericHover(GameObject _eventGameObject)
     {
-        // TODO: Put hover logic from above here
+        MouseOverName = "\n" + " Cursor last over: " + _eventGameObject.name;
+        // TODO: Add some more detailed info
     }
     
     public void GenericPickup(GameObject _eventGameObject)

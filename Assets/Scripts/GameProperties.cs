@@ -68,19 +68,102 @@ public class GameProperties : MonoBehaviour
     {
         return HostableResources;
     }
-    public bool CanHost(string _resource)
+
+    /// <summary>
+    /// Checks to see if this Gamobject can hypothetically host _child
+    /// </summary>
+    /// <param name="_child">The GameObject that is being checked for compatibility</param>
+    /// <returns>true if it can be hosted, false if it cannot</returns>
+    public bool CanHost(GameObject _child)
     {
-        // If it's possible for this to host objects
-        if (HousingMaxes.ContainsKey(_resource))
+        if (_child.TryGetComponent<GameProperties>(out GameProperties _childProperties))
         {
-            // And the max hasn't been exceeded
-            if (HousingStatus[_resource] < HousingMaxes[_resource])
+            // Go through each of the _resources the provided child has
+            foreach (string _resource in _childProperties.GetResrouceTypeTags())
             {
-                // Then this can host that resource
+                // If it's generally possible for this to host objects
+                if (HousingMaxes.ContainsKey(_resource))
+                {
+                    // But the max has been exceeded
+                    if (HousingStatus[_resource] >= HousingMaxes[_resource])
+                    {
+                        // Then this cannot host that resource
+                        return false;
+                    }
+                }
+                else
+                {
+                    // Otherwise it's not a valid host
+                    return false;
+                }
+            }
+            // Then they must share a type AND have space
+            return true;
+        }
+        else
+        {
+            // If the child object has no GameProperties then it can be hosted
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Checks if the child can be moved using .IsDragable
+    /// Then decrements the appropriate HousingStatus entry in the parent
+    /// </summary>
+    /// <param name="_child">A child of this object that is to be unhosted</param>
+    /// <returns>true if the child was unhosted</returns>
+    public bool UnHost(GameObject _child)
+    {
+        // Check that the child is indeed a child
+        if (HostedChildren.Contains(_child))
+        {
+            // If the child is dragable proceed, otherwise fail and return false
+            if (_child.GetComponent<GameProperties>().IsDragable)
+            {
+                // Go through each of the resource types of the child and decement the housing status
+                foreach (string _resource in _child.GetComponent<GameProperties>().GetResrouceTypeTags())
+                {
+                    HousingStatus[_resource]--;
+                }
+                HostedChildren.Remove(_child);
                 return true;
             }
         }
-        // In any other case it cannot
+        // If it didn't return true there was no UnHost
         return false;
+    }
+
+    /// <summary>
+    /// If valid, will make _child a child of this object and update the housing status
+    /// </summary>
+    /// <param name="_child">The GameObject hosted on this object</param>
+    /// <returns>true if the nesting operation was a success</returns>
+    public bool Host(GameObject _child)
+    {
+        // If this object cannot host _child
+        if (!CanHost(_child))
+        {
+            return false;
+        }
+
+        // Try to unhost it from that previous parent
+        if (!_child.transform.parent.gameObject.GetComponent<GameProperties>().UnHost(_child))
+        {
+            // If that didn't work return false
+            return false;
+        }
+
+        // Increment the housing status of this board
+        foreach (string _resource in _child.GetComponent<GameProperties>().GetResrouceTypeTags())
+        {
+            HousingStatus[_resource]++;
+        }
+
+        // Attach the child to this object and snap it to the original locaiton offset
+        _child.transform.parent = this.transform;
+        HostedChildren.Add(_child);
+        GetComponent<AudioSource>().PlayOneShot(PlaceSound);
+        return true;
     }
 }

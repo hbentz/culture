@@ -78,6 +78,7 @@ public class GameProperties : MonoBehaviour
     
     public void RearrangeChildren()
     {
+        // Condier using GetComponent<Collider>().bounds.size
         switch (HostedChildren.Count())
         {
             case 1:

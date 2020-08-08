@@ -17,13 +17,16 @@ public class GameMasterMain : MonoBehaviour
     public Text HoverDebug;
     public Plane DragPlane = new Plane(Vector3.down, 5.0f);
 
+    // Should only be proceduarlly set
     public string LastOver = "";
-
-    // Not sure if these should be public?
-    public GameObject HoverItem;
+    public string LastNestInfo = "";
+    public string NestInfo = "";
+    public bool LastNestPossible = false;
     public bool InDragMode = false;
+
+    public GameObject HoverItem;
     public GameObject DragObject;
-    public GameObject SnapToObject;
+    public GameObject LastNestObject;
     public Ray CursorRay;
 
     // Awake runs before start
@@ -46,68 +49,11 @@ public class GameMasterMain : MonoBehaviour
         // Figure out what the player it pointing at:
         CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        // While a drag is active
-        if (InDragMode)
-        {
-            // Make a ray from the Origin of the DragObject pointing away from the camera
-            // (DragObject.transform.position - Camera.main.transform.position) should be the same a cursorRay.direction for this purpose?
-            Ray _dragObjHeading = new Ray(DragObject.transform.position, CursorRay.direction);
-
-            // See what the ray is coliding with 
-            // TODO: On the first frame of card pickup. dragObjectHit htis the visuals for the card.
-            if (Physics.Raycast(_dragObjHeading, out RaycastHit dragObjectHit, 1000))
-            {
-                // The intent is that all colliders are visual only so to access the actual object it's required to climb up a level
-                SnapToObject = ObjectClimber(dragObjectHit.transform.gameObject);
-                Debug.Log("Hit" + SnapToObject.transform.name);
-
-                // Write that out into the UI
-                DebugOverlayText += "\n" + "Card is over: " + SnapToObject.name;
-
-                // Check if that's a valid nest
-                if (HostChildOnParent(DragObject, SnapToObject, Vector3.zero, true))
-                {
-                    DebugOverlayText += "\n" + "These objects can be nested together.";
-                }
-                else
-                {
-                    DebugOverlayText += "\n" + "These objects CANNOT be nested together.";
-                }
-            }
-
-            // Primary mouse is 0, context click is 1, middle click is 2
-            // If there is a mouseup during a drag
-            if (Input.GetMouseButtonUp(0))
-            {
-                // Stop the drag
-                InDragMode = false;
-                Debug.Log("Released " + DragObject.name + " to drag mode.");
-
-                // If there is a target
-                if (dragObjectHit.collider != null)
-                {
-                    // Check the nesting is valid nest them together and snap into place
-                    if (HostChildOnParent(DragObject, SnapToObject, Vector3.zero))
-                    {
-                        Debug.Log("Hosted " + DragObject.name + " inside " + SnapToObject.name);
-                    }
-                    else
-                    {
-                        Debug.Log("Failed to host " + DragObject.name + " inside " + SnapToObject.name + " due to attach error.");
-                        DragObject.transform.localPosition = Vector3.zero;  // TODO: Exception for returning to original hand
-                    }
-                }
-                else
-                {
-                    Debug.Log("Can't host " + DragObject.name + " inside null");
-                    DragObject.transform.localPosition = Vector3.zero;  // TODO: Exception for returning to original hand
-                }
-            }
-        }
-
         DebugOverlayText += LastOver;
+        DebugOverlayText += LastNestInfo;
+        DebugOverlayText += NestInfo;
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
-        }
+    }
 
     GameObject ObjectClimber(GameObject Child)
     {
@@ -130,7 +76,6 @@ public class GameMasterMain : MonoBehaviour
     /// <returns>false if objects cannot, or were not hosted together</returns>
     public bool HostChildOnParent(GameObject Child, GameObject Parent, Vector3 Offset, bool IsTest = false)
     {
-        // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT
         AdvancedProperties _childProperties = Child.GetComponent<AdvancedProperties>();
         AdvancedProperties _parentProperties = Parent.GetComponent<AdvancedProperties>();
         IEnumerable<string> _sharedTags = _childProperties.GetResrouceTypeTags().Intersect(_parentProperties.GetHostableResources());
@@ -219,6 +164,7 @@ public class GameMasterMain : MonoBehaviour
             // Set it into dragging mode and give GameMasterMain access to it
             _eventGameObject.GetComponent<AdvancedProperties>().IsDragging = true;
             DragObject = _eventGameObject;
+            InDragMode = true;
             // TODO: trigger OnPickup() from _eventGameObject
         }
     }
@@ -229,7 +175,21 @@ public class GameMasterMain : MonoBehaviour
     /// <param name="_eventGameObject">GameObject that fired OnMouseUpAsButton()</param>
     public void GenericRelease(GameObject _eventGameObject)
     {
-        InDragMode = false;
+        if (InDragMode)
+        {
+            InDragMode = false;
+
+            if (LastNestPossible)
+            {
+                // TODO: NestInfo += 
+                // TODO: Do the nesting
+            }
+            else
+            {
+                // TODO: NestInfo +=
+                // TODO: Return to hand
+            }
+        }
         // TODO: Release logic from above
     }
 
@@ -246,6 +206,22 @@ public class GameMasterMain : MonoBehaviour
             if (DragPlane.Raycast(CursorRay, out float DragSnapDist))
             {
                 _eventGameObject.transform.position = CursorRay.GetPoint(DragSnapDist);
+            }
+            
+            // Make a ray from the Origin of the DragObject pointing away from the camera
+            // This will collide with whatever DragObject appeart to be over
+            Ray _dragObjHeading = new Ray(DragObject.transform.position, CursorRay.direction);
+            if (Physics.Raycast(_dragObjHeading, out RaycastHit dragObjectHit, 1000))
+            {
+                // all colliders are visual only and the parent object is desired
+                LastNestObject = ObjectClimber(dragObjectHit.transform.gameObject);
+                // TODO: Trigger an OnHoverObjectOver(GameObject) custom event from LastNestObject
+
+                LastNestInfo = "\n" + "Card is over: " + LastNestObject.name;
+                LastNestPossible = HostChildOnParent(DragObject, LastNestObject, Vector3.zero, true);
+                LastNestInfo += "\n" + "These objects ";
+                LastNestInfo += LastNestPossible ? "CAN" : "CANNOT";
+                LastNestInfo += " be nested together.";
             }
         }
     }

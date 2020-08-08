@@ -97,6 +97,7 @@ public class GameMasterMain : MonoBehaviour
             // Set it into dragging mode and give GameMasterMain access to it
             _eventGameObject.GetComponent<GameProperties>().IsDragging = true;
             DragObject = _eventGameObject;
+            DragObject.GetComponent<AudioSource>().PlayOneShot(DragObject.GetComponent<GameProperties>().PickUpSound);
             // TODO: trigger OnPickup() from _eventGameObject
         }
     }
@@ -121,6 +122,7 @@ public class GameMasterMain : MonoBehaviour
             
             // Rearrange the object and its siblings on it's parent
             _eventGameObject.transform.parent.gameObject.GetComponent<GameProperties>().RearrangeChildren();
+            DragObject.GetComponent<AudioSource>().PlayOneShot(DragObject.GetComponent<GameProperties>().PlaceSound);
         }
     }
 
@@ -154,6 +156,9 @@ public class GameMasterMain : MonoBehaviour
                 LastNestInfo += "\n" + "These objects ";
                 LastNestInfo += LastNestPossible ? "CAN" : "CANNOT";
                 LastNestInfo += " be nested together.";
+
+                // Preview the new location of the objects
+                LastNestObject.GetComponent<GameProperties>().RearrangeChildren(DragObject);
             }
         }
     }

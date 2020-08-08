@@ -76,11 +76,11 @@ public class GameMasterMain : MonoBehaviour
     /// <returns>false if objects cannot, or were not hosted together</returns>
     public bool HostChildOnParent(GameObject Child, GameObject Parent, Vector3 Offset, bool IsTest = false)
     {
-        AdvancedProperties _childProperties = Child.GetComponent<AdvancedProperties>();
-        AdvancedProperties _parentProperties = Parent.GetComponent<AdvancedProperties>();
+        GameProperties _childProperties = Child.GetComponent<GameProperties>();
+        GameProperties _parentProperties = Parent.GetComponent<GameProperties>();
         IEnumerable<string> _sharedTags = _childProperties.GetResrouceTypeTags().Intersect(_parentProperties.GetHostableResources());
 
-        // If there aren't any common entries between the ResourceTypeTags of the Child and this one 
+        // If there aren't any common entries between the ResourceTypes of the Child and this one 
         if (!_sharedTags.Any())
         {
             Debug.Log("Can't host due to no shared features");
@@ -102,7 +102,7 @@ public class GameMasterMain : MonoBehaviour
             if (!IsTest)
             {
                 // Unhost the object from the previous parent
-                if (Child.transform.parent.TryGetComponent<AdvancedProperties>(out AdvancedProperties _oldParentProperties))
+                if (Child.transform.parent.TryGetComponent<GameProperties>(out GameProperties _oldParentProperties))
                 {
                     // TODO: Custom Unhost Functions
                     IEnumerable<string> _oldSharedTags = _childProperties.GetResrouceTypeTags().Intersect(_oldParentProperties.GetHostableResources());
@@ -159,10 +159,10 @@ public class GameMasterMain : MonoBehaviour
     public void GenericPickup(GameObject _eventGameObject)
     {
         // If the item can be dragged
-        if (_eventGameObject.GetComponent<AdvancedProperties>().IsDragable)
+        if (_eventGameObject.GetComponent<GameProperties>().IsDragable)
         {
             // Set it into dragging mode and give GameMasterMain access to it
-            _eventGameObject.GetComponent<AdvancedProperties>().IsDragging = true;
+            _eventGameObject.GetComponent<GameProperties>().IsDragging = true;
             DragObject = _eventGameObject;
             InDragMode = true;
             // TODO: trigger OnPickup() from _eventGameObject
@@ -200,7 +200,7 @@ public class GameMasterMain : MonoBehaviour
     public void GenericDrag(GameObject _eventGameObject)
     {
         // Only drag the object if it has the tag that allows it
-        if (_eventGameObject.GetComponent<AdvancedProperties>().IsDragging)
+        if (_eventGameObject.GetComponent<GameProperties>().IsDragging)
         {
             // Move the _eventGameObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
             if (DragPlane.Raycast(CursorRay, out float DragSnapDist))

@@ -78,6 +78,14 @@ public class GameProperties : MonoBehaviour
     
     public void RearrangeChildren()
     {
+        switch (HostedChildren.Count())
+        {
+            case 1:
+                HostedChildren[0].transform.localPosition = new Vector3(0, ChildrenYOffset, 0);
+                break;
+            // TODO: Other cases
+        }
+
         // TODO: Custom per-component logic for rearranging children for visuals
     }
 

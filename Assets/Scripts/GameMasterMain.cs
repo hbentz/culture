@@ -17,11 +17,11 @@ public class GameMasterMain : MonoBehaviour
     public Text HoverDebug;
     public Plane DragPlane = new Plane(Vector3.down, 5.0f);
 
-    public string MouseOverName = "";
+    public string LastOver = "";
 
     // Not sure if these should be public?
     public GameObject HoverItem;
-    public bool IsDragging = false;
+    public bool InDragMode = false;
     public GameObject DragObject;
     public GameObject SnapToObject;
     public Ray CursorRay;
@@ -47,7 +47,7 @@ public class GameMasterMain : MonoBehaviour
         CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // While a drag is active
-        if (IsDragging)
+        if (InDragMode)
         {
             // Make a ray from the Origin of the DragObject pointing away from the camera
             // (DragObject.transform.position - Camera.main.transform.position) should be the same a cursorRay.direction for this purpose?
@@ -80,7 +80,7 @@ public class GameMasterMain : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 // Stop the drag
-                IsDragging = false;
+                InDragMode = false;
                 Debug.Log("Released " + DragObject.name + " to drag mode.");
 
                 // If there is a target
@@ -105,7 +105,7 @@ public class GameMasterMain : MonoBehaviour
             }
         }
 
-        DebugOverlayText += MouseOverName;
+        DebugOverlayText += LastOver;
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
         }
 
@@ -120,13 +120,14 @@ public class GameMasterMain : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Attempts to make Child a child of Parent with local transform Offset
+    /// Also attempts to hosting logic between the cards
     /// </summary>
-    /// <param name="Child"></param>
-    /// <param name="Parent"></param>
-    /// <param name="Offset"></param>
-    /// <param name="IsTest"></param>
-    /// <returns>false if objects cannot be hosted together, or have failed </returns>
+    /// <param name="Child">object to be hosted by and become child of Parent</param>
+    /// <param name="Parent">object to host and become parent of Child</param>
+    /// <param name="Offset">the localTransform of Child when the hosting is sucessful</param>
+    /// <param name="IsTest">if true, will only check if the host would be valid, but not actually host</param>
+    /// <returns>false if objects cannot, or were not hosted together</returns>
     public bool HostChildOnParent(GameObject Child, GameObject Parent, Vector3 Offset, bool IsTest = false)
     {
         // TODO: NEED TO UNHOST CHILD FROM ORIGINAL PARENT
@@ -186,44 +187,57 @@ public class GameMasterMain : MonoBehaviour
             return true;
         }
     }
-    
+
+    /// <summary>
+    /// Sets the LastOver overlay element and TOOO: detailed info overlay
+    /// </summary>
+    /// <param name="_eventGameObject">GameObject that fired OnMouseOver()</param>
     public void GenericHover(GameObject _eventGameObject)
     {
-        MouseOverName = "\n" + " Cursor last over: " + _eventGameObject.name;
+        LastOver = "\n" + " Cursor last over: " + _eventGameObject.name;
         // TODO: Add some more detailed info
     }
 
+    /// <summary>
+    /// TODO: Removes detailed info placed by GenericHover
+    /// </summary>
+    /// <param name="_eventGameObject">GameObject that fired OnMouseExit()</param>
     public void GenericUnHover(GameObject _eventGameObject)
     {
         // TODO: remove detailed info
     }
 
+    /// <summary>
+    /// Sets DragObject to _eventGameObject and sets it into Dragging mode if true
+    /// </summary>
+    /// <param name="_eventGameObject">GameObject that fired OnMouseDown()</param>
     public void GenericPickup(GameObject _eventGameObject)
     {
         // TODO: Put onclick logic from above
+    /// <summary>
+    /// Hosts _eventGameObject on object it's hovering over if possible
+    /// </summary>
+    /// <param name="_eventGameObject">GameObject that fired OnMouseUpAsButton()</param>
+    public void GenericRelease(GameObject _eventGameObject)
+    {
+        InDragMode = false;
+        // TODO: Release logic from above
     }
 
     /// <summary>
-    /// Intented to be the default drag option for components using the EventSysyem
-    /// Simply snaps the object to the cursor position if it's dragable
+    /// Snaps the _evenGameObject to cursor position on DragPlane if possible
     /// </summary>
-    /// <param name="EventDragObject">GameObject that is being dragged</param>
+    /// <param name="_eventGameObject">GameObject that fired OnMouseDrag()</param>
     public void GenericDrag(GameObject _eventGameObject)
     {
         // Only drag the object if it has the tag that allows it
         if (_eventGameObject.GetComponent<AdvancedProperties>().HasPropertyTag("Dragable"))
         {
-            // Move the DragObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
+            // Move the _eventGameObject on the DragPlane by figuring out where the ray from the mouse towards the scene 
             if (DragPlane.Raycast(CursorRay, out float DragSnapDist))
             {
                 _eventGameObject.transform.position = CursorRay.GetPoint(DragSnapDist);
             }
         }
-    }
-
-    public void GenericRelease(GameObject _eventGameObject)
-    {
-        IsDragging = false;
-        // TODO: Release logic from above
     }
 }

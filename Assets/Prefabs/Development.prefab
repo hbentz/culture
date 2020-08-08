@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7858623104954951677}
   - component: {fileID: 4508273604557857467}
   m_Layer: 0
-  m_Name: Quadrant
+  m_Name: Development
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,10 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableResources: []
-  TagMaxes: 
-  ResourceTypeTags: []
-  PropertyTags: []
+  PickUpSound: {fileID: 0}
+  PlaceSound: {fileID: 0}
+  ChildrenYOffset: 0.2
+  ResourceTypes:
+  - Development
+  HostableResources:
+  - CardSlot
+  ResourceMaxes: 04000000
+  HostedChildren: []
   IsDragable: 0
   IsDragging: 0
 --- !u!1 &7858623105028846506

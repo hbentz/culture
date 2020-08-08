@@ -15,7 +15,7 @@ public class GameMasterMain : MonoBehaviour
     
     public int PlayerIDTurn = 1;
     public Text HoverDebug;
-    public Plane DragPlane = new Plane(Vector3.down, 5.0f);
+    public Plane DragPlane = new Plane(Vector3.down, 1.2f);
 
     // Should only be proceduarlly set
     public string LastOver = "";
@@ -81,6 +81,7 @@ public class GameMasterMain : MonoBehaviour
     /// <param name="_eventGameObject">GameObject that fired OnMouseExit()</param>
     public void GenericUnHover(GameObject _eventGameObject)
     {
+        LastOver = "";
         // TODO: remove detailed info
     }
 

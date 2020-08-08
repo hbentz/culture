@@ -1173,6 +1173,7 @@ MonoBehaviour:
   TagMaxes: 
   ResourceTypeTags: []
   PropertyTags: []
+  Dragable: 0
 --- !u!1 &1768393215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerIDTurn: 1
   HoverDebug: {fileID: 807072960}
+  MouseOverName: 
   HoverItem: {fileID: 0}
   IsDragging: 0
   DragObject: {fileID: 0}

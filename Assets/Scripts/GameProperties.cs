@@ -19,6 +19,7 @@ public class GameProperties : MonoBehaviour
     // Dictionarizied versions of above
     public Dictionary<string, int> HousingStatus =  new Dictionary<string, int>();
     public Dictionary<string, int> HousingMaxes = new Dictionary<string, int>();
+    public List<GameObject> HostedChildren = new List<GameObject>();
 
     // Game interaction settings
     public bool IsDragable = false;
@@ -43,7 +44,10 @@ public class GameProperties : MonoBehaviour
                 GameProperties _childProp = _childTransform.GetComponent<GameProperties>();
                 if (_childProp != null)
                 {
-                    // And the properties
+                    // Add it to the hosted list
+                    HostedChildren.Add(_childTransform.gameObject);
+
+                    // And is of the resources from the outer loop
                     if (_childProp.IsResource(HostableResource))
                     {
                         // Increment the the housing status for resource type from the main loop
@@ -67,6 +71,28 @@ public class GameProperties : MonoBehaviour
     public IEnumerable<string> GetHostableResources()
     {
         return HostableResources;
+    }
+    
+    public void RearrangeChildren()
+    {
+        // TODO: Custom per-component logic for rearranging children for visuals
+    }
+
+    /// <summary>
+    /// Rearranges the other objects around where _child would go if it were to be hosted
+    /// </summary>
+    /// <param name="_child">GameObject that is being hovered over</param>
+    public void RearrangeChildren(GameObject _child)
+    {
+        // Record the original position of the card
+        Vector3 _originalPosition = new Vector3(_child.transform.position.x, _child.transform.position.y, _child.transform.position.z);
+        // Temporarily add it as a child
+        HostedChildren.Add(_child);
+        // Rearrange it
+        RearrangeChildren();
+        // Remove _child as a hosted child and snap it back to the cursor position
+        HostedChildren.Remove(_child);
+        _child.transform.position = _originalPosition;
     }
 
     /// <summary>

@@ -118,6 +118,7 @@ public class GameMasterMain : MonoBehaviour
             NestInfo += DragObject.name + " On " + LastNestObject.name;
             
             // Rearrange the object and its siblings on it's parent
+            _eventGameObject.transform.parent.gameObject.GetComponent<GameProperties>().RearrangeChildren();
         }
     }
 

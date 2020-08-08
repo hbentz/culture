@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5805918955383747607}
-  - component: {fileID: 8238450955996695374}
   - component: {fileID: 3683262010949023750}
+  - component: {fileID: 8238450955996695374}
   - component: {fileID: 159846638}
   - component: {fileID: 159846636}
   - component: {fileID: 159846637}
@@ -36,6 +36,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3683262010949023750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805918955383747604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bcf6bb9891ada42aa5e67cc3000e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickUpSound: {fileID: 8300000, guid: 6f37f83647e1a1c4e8cae49521915ee9, type: 3}
+  PlaceSound: {fileID: 8300000, guid: 25e3d6d455275464ca0642fd331eed51, type: 3}
 --- !u!114 &8238450955996695374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,18 +68,7 @@ MonoBehaviour:
   - Card
   PropertyTags:
   - Dragable
---- !u!114 &3683262010949023750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805918955383747604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98bcf6bb9891ada42aa5e67cc3000e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Dragable: 1
 --- !u!65 &159846638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -136,7 +139,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 811d36b4845c63a42a32f3e13ab3a5d9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dd2a50526e833c2488948ea14d3834b0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -5,7 +5,9 @@ using UnityEngine;
 public class CardBehaivors : MonoBehaviour
 {
     // Intended to hold custom events about the card
-    // Start is called before the first frame update
+    public AudioClip PickUpSound;
+    public AudioClip PlaceSound;
+
     void Start()
     {
     }
@@ -16,22 +18,31 @@ public class CardBehaivors : MonoBehaviour
     }
     private void OnMouseExit()
     {
+        GameMasterMain.Instance.GenericUnHover(this.transform.gameObject);
     }
     private void OnMouseDown()
     {
+        // Pickup the object in GameMasterMain and maybe play a sound
         GameMasterMain.Instance.GenericPickup(this.transform.gameObject);
+        PlayClipIfTag(PickUpSound, "Dragable");
     }
     private void OnMouseUpAsButton()
     {
+        // Place this object in GameMasterMain and maybe play a sound
         GameMasterMain.Instance.GenericRelease(this.transform.gameObject);
+        PlayClipIfTag(PlaceSound, "Dragging");
     }
     private void OnMouseDrag()
     {
         GameMasterMain.Instance.GenericDrag(this.transform.gameObject);
     }
-    void OnMouseUpAsButton()
+
+    void PlayClipIfTag(AudioClip _soundClip, string _tag)
     {
-        GameMasterMain.Instance.GenericRelease(this.transform.gameObject);
+        if (GetComponent<AdvancedProperties>().HasPropertyTag(_tag))
+        {
+            GetComponent<AudioSource>().PlayOneShot(_soundClip);
+        }
     }
 
     // Update is called once per frame

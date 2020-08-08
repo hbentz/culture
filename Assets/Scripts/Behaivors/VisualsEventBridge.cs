@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventFeeder : MonoBehaviour
+public class VisualsEventBridge : MonoBehaviour
 {
-    // Intended to handle EventSystem input only
+    // Intended to throw event system input up to GameMasterMain and give reference to the parent object
     private void OnMouseOver()
     {
         GameMasterMain.Instance.GenericHover(this.transform.parent.gameObject);

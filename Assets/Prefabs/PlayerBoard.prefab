@@ -46,10 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableResources: []
-  TagMaxes: 
-  ResourceTypeTags: []
-  PropertyTags: []
+  PickUpSound: {fileID: 0}
+  PlaceSound: {fileID: 0}
+  ChildrenYOffset: 0
+  ResourceTypes:
+  - GameBoard
+  HostableResources:
+  - ResourceTray
+  - Development
+  ResourceMaxes: 0100000001000000
+  HostedChildren: []
   IsDragable: 0
   IsDragging: 0
 --- !u!1 &30015452228757882
@@ -95,7 +101,7 @@ GameObject:
   - component: {fileID: 30015453185152014}
   - component: {fileID: 1595227710}
   m_Layer: 0
-  m_Name: Developments
+  m_Name: Development
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,10 +140,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableResources: []
-  TagMaxes: 
-  ResourceTypeTags: []
-  PropertyTags: []
+  PickUpSound: {fileID: 0}
+  PlaceSound: {fileID: 0}
+  ChildrenYOffset: 0
+  ResourceTypes:
+  - Development
+  HostableResources:
+  - CardSlot
+  ResourceMaxes: 06000000
+  HostedChildren: []
   IsDragable: 0
   IsDragging: 0
 --- !u!1 &30015453439835997
@@ -258,7 +269,7 @@ GameObject:
   - component: {fileID: 30015453771340333}
   - component: {fileID: 1595227709}
   m_Layer: 0
-  m_Name: Resources
+  m_Name: ResourceTray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,10 +302,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpSound: {fileID: 0}
+  PlaceSound: {fileID: 0}
+  ChildrenYOffset: 0
+  ResourceTypes:
+  - ResourceTray
   HostableResources: []
-  TagMaxes: 
-  ResourceTypeTags: []
-  PropertyTags: []
+  ResourceMaxes: 
+  HostedChildren: []
   IsDragable: 0
   IsDragging: 0
 --- !u!1 &30015453855838635

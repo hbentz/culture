@@ -151,10 +151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PickUpSound: {fileID: 0}
+  PlaceSound: {fileID: 0}
+  ChildrenYOffset: 0.3
+  ResourceTypes:
+  - CardSlot
   HostableResources:
   - Card
-  TagMaxes: 01000000
-  ResourceTypeTags: []
-  PropertyTags: []
+  ResourceMaxes: 01000000
+  HostedChildren: []
   IsDragable: 0
   IsDragging: 0

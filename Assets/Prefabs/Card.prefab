@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 937774611927534676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.5, z: 3}
+  m_LocalScale: {x: 3, y: 0.3, z: 3}
   m_Children: []
   m_Father: {fileID: 5805918955383747607}
   m_RootOrder: 0
@@ -115,7 +115,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5805918955383747607}
-  - component: {fileID: 3683262010949023750}
   - component: {fileID: 8238450955996695374}
   - component: {fileID: 8589443962467946738}
   m_Layer: 0
@@ -140,20 +139,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3683262010949023750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805918955383747604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98bcf6bb9891ada42aa5e67cc3000e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PickUpSound: {fileID: 8300000, guid: 6f37f83647e1a1c4e8cae49521915ee9, type: 3}
-  PlaceSound: {fileID: 8300000, guid: 25e3d6d455275464ca0642fd331eed51, type: 3}
 --- !u!114 &8238450955996695374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,11 +151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableResources: []
-  TagMaxes: 
-  ResourceTypeTags:
+  PickUpSound: {fileID: 8300000, guid: 6f37f83647e1a1c4e8cae49521915ee9, type: 3}
+  PlaceSound: {fileID: 8300000, guid: 1b7810d092d29eb419fe43017c6a3ec1, type: 3}
+  ChildrenYOffset: 0.4
+  ResourceTypes:
   - Card
-  PropertyTags: []
+  HostableResources: []
+  ResourceMaxes: 
+  HostedChildren: []
   IsDragable: 1
   IsDragging: 0
 --- !u!82 &8589443962467946738

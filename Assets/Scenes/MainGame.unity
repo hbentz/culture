@@ -126,7 +126,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1797825474}
+    m_TransformParent: {fileID: 2101267873}
     m_Modifications:
     - target: {fileID: 5805918955383747604, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
@@ -136,17 +136,17 @@ PrefabInstance:
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.8
+      value: 15.553467
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -26.8652
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.72
+      value: -17.389704
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 7858623104954951676, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
       propertyPath: m_Name
-      value: Quadrant4
+      value: Development4
       objectReference: {fileID: 0}
     - target: {fileID: 7858623104954951677, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
@@ -335,7 +335,7 @@ PrefabInstance:
     - target: {fileID: 7858623104954951676, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
       propertyPath: m_Name
-      value: Quadrant3
+      value: Development3
       objectReference: {fileID: 0}
     - target: {fileID: 7858623104954951677, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
@@ -713,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 7858623104954951676, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
       propertyPath: m_Name
-      value: Quadrant2
+      value: Development2
       objectReference: {fileID: 0}
     - target: {fileID: 7858623104954951677, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
@@ -871,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 7858623104954951676, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
       propertyPath: m_Name
-      value: Quadrant1
+      value: Development1
       objectReference: {fileID: 0}
     - target: {fileID: 7858623104954951677, guid: 22ff0a032d33ac64398cc8ba98f9f635,
         type: 3}
@@ -946,7 +946,7 @@ PrefabInstance:
     - target: {fileID: 30015452228757882, guid: 3fcd393a3493ad346908337e0f793689,
         type: 3}
       propertyPath: m_Name
-      value: PlayerBoard
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 30015452228757883, guid: 3fcd393a3493ad346908337e0f793689,
         type: 3}
@@ -1152,10 +1152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HostableResources: []
-  TagMaxes: 
-  ResourceTypeTags: []
-  PropertyTags: []
+  PickUpSound: {fileID: 0}
+  PlaceSound: {fileID: 0}
+  ChildrenYOffset: 0.1
+  ResourceTypes:
+  - GameBoard
+  HostableResources:
+  - Development
+  ResourceMaxes: 04000000
+  HostedChildren: []
   IsDragable: 0
   IsDragging: 0
 --- !u!1 &1768393215
@@ -1256,10 +1261,12 @@ MonoBehaviour:
   PlayerIDTurn: 1
   HoverDebug: {fileID: 807072960}
   LastOver: 
+  LastNestInfo: 
+  NestInfo: 
+  LastNestPossible: 0
   HoverItem: {fileID: 0}
-  InDragMode: 0
   DragObject: {fileID: 0}
-  SnapToObject: {fileID: 0}
+  LastNestObject: {fileID: 0}
 --- !u!4 &1797825474
 Transform:
   m_ObjectHideFlags: 0
@@ -1270,9 +1277,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5805918954677251268}
-  - {fileID: 630293408}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1349,6 +1354,62 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b80ff6904947949a912527d471aaa6, type: 3}
+--- !u!1 &2101267871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2101267873}
+  - component: {fileID: 2101267872}
+  m_Layer: 0
+  m_Name: CommonDeck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2101267872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101267871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickUpSound: {fileID: 0}
+  PlaceSound: {fileID: 0}
+  ChildrenYOffset: 0.1
+  ResourceTypes:
+  - Deck
+  HostableResources:
+  - Card
+  ResourceMaxes: 05000000
+  HostedChildren: []
+  IsDragable: 0
+  IsDragging: 0
+--- !u!4 &2101267873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101267871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.753466, y: 26.8652, z: -12.330296}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5805918954677251268}
+  - {fileID: 630293408}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2131262996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,7 +1509,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1797825474}
+    m_TransformParent: {fileID: 2101267873}
     m_Modifications:
     - target: {fileID: 5805918955383747604, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
@@ -1458,17 +1519,17 @@ PrefabInstance:
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.39
+      value: -0.63653374
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -26.8652
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.72
+      value: -17.389704
       objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}

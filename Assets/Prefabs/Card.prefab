@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickUpSound: {fileID: 8300000, guid: 6f37f83647e1a1c4e8cae49521915ee9, type: 3}
-  PlaceSound: {fileID: 8300000, guid: 1b7810d092d29eb419fe43017c6a3ec1, type: 3}
+  PickUpSound: {fileID: 8300000, guid: 9c22eea25e7875348832fdeeff708cd1, type: 3}
+  PlaceSound: {fileID: 8300000, guid: 5208ca9b1ae744345b73b125684d7105, type: 3}
   ChildrenYOffset: 0.4
   ResourceTypes:
   - Card

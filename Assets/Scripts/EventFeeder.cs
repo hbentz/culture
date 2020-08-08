@@ -5,20 +5,24 @@ using UnityEngine;
 public class EventFeeder : MonoBehaviour
 {
     // Intended to handle EventSystem input only
-    void OnMouseOver()
+    private void OnMouseOver()
     {
-        GameMasterMain.Instance.GenericHover(this.transform.gameObject);
+        GameMasterMain.Instance.GenericHover(this.transform.parent.gameObject);
     }
-    void OnMouseDown()
+    private void OnMouseExit()
     {
-        GameMasterMain.Instance.GenericPickup(this.transform.gameObject);
+        GameMasterMain.Instance.GenericUnHover(this.transform.parent.gameObject);
     }
-    void OnMouseDrag()
+    private void OnMouseDown()
     {
-        GameMasterMain.Instance.GenericDrag(this.transform.gameObject);
+        GameMasterMain.Instance.GenericPickup(this.transform.parent.gameObject);
     }
-    void OnMouseUpAsButton()
+    private void OnMouseUpAsButton()
     {
         GameMasterMain.Instance.GenericRelease(this.transform.gameObject);
+    }
+    private void OnMouseDrag()
+    {
+        GameMasterMain.Instance.GenericDrag(this.transform.gameObject);
     }
 }

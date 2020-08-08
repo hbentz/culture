@@ -12,36 +12,14 @@ public class CardBehaivors : MonoBehaviour
     {
     }
 
-    private void OnMouseOver()
+    void OnPickup()
     {
-        GameMasterMain.Instance.GenericHover(this.transform.gameObject);
+        GetComponent<AudioSource>().PlayOneShot(PickUpSound);
     }
-    private void OnMouseExit()
+
+    void OnPlace()
     {
-        GameMasterMain.Instance.GenericUnHover(this.transform.gameObject);
-    }
-    private void OnMouseDown()
-    {
-        // Maybe play a sound and Pickup the object in GameMasterMain
-        if (GetComponent<AdvancedProperties>().IsDragable)
-        {
-            GetComponent<AudioSource>().PlayOneShot(PickUpSound);
-        }
-        GameMasterMain.Instance.GenericPickup(this.transform.gameObject);
-        
-    }
-    private void OnMouseUpAsButton()
-    {
-        // Maybe play a sound and Place this object in GameMasterMain
-        if (GetComponent<AdvancedProperties>().IsDragging)
-        {
-            GetComponent<AudioSource>().PlayOneShot(PlaceSound);
-        }
-        GameMasterMain.Instance.GenericRelease(this.transform.gameObject);
-    }
-    private void OnMouseDrag()
-    {
-        GameMasterMain.Instance.GenericDrag(this.transform.gameObject);
+        GetComponent<AudioSource>().PlayOneShot(PlaceSound);
     }
 
     // Update is called once per frame

@@ -179,7 +179,7 @@ public class GameMasterMain : MonoBehaviour
                 // Attach the object and snap it to the offset
                 Child.transform.parent = Parent.transform;
                 Child.transform.localPosition = Offset;
-                Child.GetComponent<AudioSource>().Play();
+                // TODO: Trigger OnPlace() from Child
                 Debug.Log("Sucessfully Hosted");
             }
 
@@ -219,6 +219,7 @@ public class GameMasterMain : MonoBehaviour
             // Set it into dragging mode and give GameMasterMain access to it
             _eventGameObject.GetComponent<AdvancedProperties>().IsDragging = true;
             DragObject = _eventGameObject;
+            // TODO: trigger OnPickup() from _eventGameObject
         }
     }
 

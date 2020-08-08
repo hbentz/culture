@@ -14,11 +14,13 @@ public class CardBehaivors : MonoBehaviour
 
     void OnPickup()
     {
+        // Play PickUpSound from this object's AudioSource
         GetComponent<AudioSource>().PlayOneShot(PickUpSound);
     }
 
     void OnPlace()
     {
+        // Play PlaceSound from this object's AudioSource
         GetComponent<AudioSource>().PlayOneShot(PlaceSound);
     }
 

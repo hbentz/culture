@@ -128,11 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1797825474}
     m_Modifications:
-    - target: {fileID: 5805918953800802036, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5805918955383747604, guid: a1a3ab04029ce894ea5543c4aa14bb91,
         type: 3}
       propertyPath: m_Name
@@ -192,16 +187,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8238450955996695374, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: ResourceTypeTags.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8238450955996695374, guid: a1a3ab04029ce894ea5543c4aa14bb91,
-        type: 3}
-      propertyPath: ResourceTypeTags.Array.data[0]
-      value: Card
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a3ab04029ce894ea5543c4aa14bb91, type: 3}
@@ -427,6 +412,7 @@ GameObject:
   - component: {fileID: 474208461}
   - component: {fileID: 474208460}
   - component: {fileID: 474208459}
+  - component: {fileID: 474208462}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -509,6 +495,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474208457}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &474208462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474208457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7876d554ce6096e4b886e5a81e6ddd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &630293408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5805918955383747607, guid: a1a3ab04029ce894ea5543c4aa14bb91,
@@ -945,16 +943,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 30015452188720512, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: m_TagString
-      value: Finish
-      objectReference: {fileID: 0}
-    - target: {fileID: 30015452188720512, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 30015452228757882, guid: 3fcd393a3493ad346908337e0f793689,
         type: 3}
       propertyPath: m_Name
@@ -1014,11 +1002,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2513560228310731765, guid: 3fcd393a3493ad346908337e0f793689,
-        type: 3}
-      propertyPath: TagMaxes.Array.data[0]
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fcd393a3493ad346908337e0f793689, type: 3}
@@ -1173,7 +1156,8 @@ MonoBehaviour:
   TagMaxes: 
   ResourceTypeTags: []
   PropertyTags: []
-  Dragable: 0
+  IsDragable: 0
+  IsDragging: 0
 --- !u!1 &1768393215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,9 +1255,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerIDTurn: 1
   HoverDebug: {fileID: 807072960}
-  MouseOverName: 
+  LastOver: 
   HoverItem: {fileID: 0}
-  IsDragging: 0
+  InDragMode: 0
   DragObject: {fileID: 0}
   SnapToObject: {fileID: 0}
 --- !u!4 &1797825474

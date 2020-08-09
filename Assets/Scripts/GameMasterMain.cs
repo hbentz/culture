@@ -66,6 +66,15 @@ public class GameMasterMain : MonoBehaviour
     {
         // Creates the one and only instance of GameMasterMain
         Instance = this;
+        // TODO Spawn main board GameInfo.SpawnLocations[NumPlayers][0]
+        for (int i = 1; i <= NumPlayers; i++)
+        {
+            // TODO: Spawn players with Camereas
+            // GameObject _newPlayer = somethingsomething prefab
+            // TurnInfo.PlayerList.Add(_newPlayer);
+            //_newPlayer.transform.position = GameInfo.SpawnLocations[NumPlayers][i];
+
+        }
     }
 
     // Start is called before the first frame update

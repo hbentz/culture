@@ -44,7 +44,7 @@ public class GameMasterMain : MonoBehaviour
     public delegate void UnHostAction(GameObject _child, GameObject _parent);
     public static event UnHostAction OnUnHost;
 
-    public delegate void TurnStartAction();
+    public delegate void TurnStartAction(GameObject ActivePlayer);
     public static event TurnStartAction OnTurnStart;
 
     public delegate void TurnEndAction();
@@ -147,7 +147,7 @@ public class GameMasterMain : MonoBehaviour
                 // Trigger the on round phase and turn start events
                 OnRoundStart?.Invoke();
                 OnPhaseStart?.Invoke();
-                OnTurnStart?.Invoke();
+                OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
             }
             else
             {
@@ -156,14 +156,14 @@ public class GameMasterMain : MonoBehaviour
                 GameInfo.TurnCounter = 0;
                 // Then invoke the phase start and turn start
                 OnPhaseStart?.Invoke();
-                OnTurnStart?.Invoke();
+                OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
             }
         }
         else
         {
             // If the TurnOrder order tracker won't roll over
             GameInfo.TurnCounter++;
-            OnTurnStart?.Invoke();
+            OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
         }
     }
 

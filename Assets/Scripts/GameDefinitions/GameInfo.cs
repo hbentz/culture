@@ -71,4 +71,13 @@ public class GameInfo
     {
         return PlayerList[PlayerTurnOrder[TurnCounter]];
     }
+
+    public void UpdatePlayerInitiative()
+    {
+        for (int i = 0; i < PlayerTurnOrder.Count; i++)
+        {
+            PlayerTurnOrder[i] = (PlayerTurnOrder[i] + 1) % PlayerTurnOrder.Count;
+
+        }
+    }
 }

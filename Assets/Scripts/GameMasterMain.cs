@@ -73,8 +73,10 @@ public class GameMasterMain : MonoBehaviour
             // GameObject _newPlayer = somethingsomething prefab
             // TurnInfo.PlayerList.Add(_newPlayer);
             //_newPlayer.transform.position = GameInfo.SpawnLocations[NumPlayers][i];
-
+            // Setup the initiative tracker
+            GameInfo.PlayerTurnOrder.Add(i - 1);
         }
+
     }
 
     // Start is called before the first frame update
@@ -109,10 +111,44 @@ public class GameMasterMain : MonoBehaviour
         // If the turn counter would roll over
         if (GameInfo.TurnCounter + 1 == NumPlayers)
         {
+            // Inoke the phase ennd event
             OnPhaseEnd?.Invoke();
-            // TODO: Invoke On Round End if applicale
+            
+            // If this is the last phase in the round
+            if (GameInfo.PhaseCounter + 1  == GameInfo.PhaseOrder.Count())
+            {
+                // Trigger the round end
+                OnRoundEnd?.Invoke();
+                
+                // Reset all the counters
+                GameInfo.RoundCounter++;
+                GameInfo.PhaseCounter = 0;
+                GameInfo.TurnCounter = 0;
+
+                // Update the iniative:
+                GameInfo.UpdatePlayerInitiative();
+
+                // Trigger the on round phase and turn start events
+                OnRoundStart?.Invoke();
+                OnPhaseStart?.Invoke();
+                OnTurnStart?.Invoke();
+            }
+            else
+            {
+                // If the phase counter won't roll over Increment it
+                GameInfo.PhaseCounter++;
+                GameInfo.TurnCounter = 0;
+                // Then invoke the phase start and turn start
+                OnPhaseStart?.Invoke();
+                OnTurnStart?.Invoke();
+            }
         }
-        // TODO: Increment turns, phases, and rounds and Invoke
+        else
+        {
+            // If the TurnOrder order tracker won't roll over
+            GameInfo.TurnCounter++;
+            OnTurnStart?.Invoke();
+        }
     }
 
     GameObject ObjectClimber(GameObject Child)

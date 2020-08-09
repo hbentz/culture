@@ -28,42 +28,52 @@ public class GameInfo
     public Dictionary<int, List<Vector3>> SpawnLocations = new Dictionary<int, List<Vector3>>()
     {
         { 1, new List<Vector3>()
-            {Vector3.zero, // TODO Single Player MainBoard Location
-             Vector3.zero} // TODO Single Player1 Position
+            {Vector3.zero, // Single Player MainBoard Location
+             new Vector3(0, 0, -22)} // Single Player1 Position
         },
         { 2, new List<Vector3>()
-            {Vector3.zero, // TODO TwoPlayer Player MainBoard Location
-             Vector3.zero, // TODO TwoPlayer Player1 Position
-             Vector3.zero} // TODO TwoPlayer Player2 Position
+            {Vector3.zero, // TwoPlayer Player MainBoard Location
+             new Vector3(0, 0, -22), // TwoPlayer Player1 Position
+             new Vector3(0, 0, 22)} // TwoPlayer Player2 Position
         },
         { 3, new List<Vector3>()
-            {Vector3.zero, // TODO ThreePlayer Player MainBoard Location
-             Vector3.zero, // TODO ThreePlayer Player1 Position
-             Vector3.zero} // TODO ThreePlayer Player3 Position
+            {Vector3.zero, // ThreePlayer Player MainBoard Location
+             new Vector3(0, 0, -22), // ThreePlayer Player1 Position
+             new Vector3(-22, 0, 0), // ThreePlayer Player1 Position
+             new Vector3(0, 0, 22)} // ThreePlayer Player3 Position
         },
         { 4, new List<Vector3>()
-            {Vector3.zero, // TODO FourPlayer Player MainBoard Location
-             Vector3.zero, // TODO FourPlayer Player1 Position
-             Vector3.zero, // TODO FourPlayer Player2 Position
-             Vector3.zero, // TODO FourPlayer Player3 Position
-             Vector3.zero} // TODO FourPlayer Player4 Position
+            {Vector3.zero, // FourPlayer Player MainBoard Location
+             new Vector3(0, 0, -22), // FourPlayer Player1 Position
+             new Vector3(-22, 0, 0), // ThreePlayer Player1 Position
+             new Vector3(0, 0, 22), // ThreePlayer Player3 Position
+             new Vector3(22, 0, 0)} // FourPlayer Player4 Position
         },
-        { 5, new List<Vector3>()
-            {Vector3.zero, // TODO FivePlayer Player MainBoard Location
-             Vector3.zero, // TODO FivePlayer Player1 Position
-             Vector3.zero, // TODO FivePlayer Player2 Position
-             Vector3.zero, // TODO FivePlayer Player3 Position
-             Vector3.zero, // TODO FivePlayer Player4 Position
-             Vector3.zero} // TODO FivePlayer Player5 Position
+    };
+
+    public Dictionary<int, List<Quaternion>> SpawnRoatations = new Dictionary<int, List<Quaternion>>()
+    {
+        { 1, new List<Quaternion>()
+            {new Quaternion(0, 0, 0, 1), // Single Player MainBoard Location
+             new Quaternion(0, 0, 0, 1)} // Single Player1 Position
         },
-        { 6, new List<Vector3>()
-            {Vector3.zero, // TODO SixPlayer Player MainBoard Location
-             Vector3.zero, // TODO SixPlayer Player1 Position
-             Vector3.zero, // TODO SixPlayer Player2 Position
-             Vector3.zero, // TODO SixPlayer Player3 Position
-             Vector3.zero, // TODO SixPlayer Player4 Position
-             Vector3.zero, // TODO SixPlayer Player5 Position
-             Vector3.zero} // TODO SixPlayer Player6 Position
+        { 2, new List<Quaternion>()
+            {new Quaternion(0, 0, 0, 1), // TwoPlayer Player MainBoard Location
+             new Quaternion(0, 0, 0, 1), // TwoPlayer Player1 Position
+             new Quaternion(0, 1, 0, 0)} // TwoPlayer Player2 Position
+        },
+        { 3, new List<Quaternion>()
+            {new Quaternion(0, 0, 0, 1), // ThreePlayer Player MainBoard Location
+             new Quaternion(0, 0, 0, 1), // ThreePlayer Player1 Position
+             new Quaternion(0, -0.7071068f, 0, 0.7071068f), // ThreePlayer Player2 Position
+             new Quaternion(0, 1, 0, 0)} // ThreePlayer Player3 Position
+        },
+        { 4, new List<Quaternion>()
+            {new Quaternion(0, 0, 0, 1), // FourPlayer Player MainBoard Location
+             new Quaternion(0, 0, 0, 1), // FourPlayer Player1 Position
+             new Quaternion(0, -0.7071068f, 0, 0.7071068f), // FourPlayer Player2 Position
+             new Quaternion(0, 1, 0, 0), // FourPlayer Player3 Position
+             new Quaternion(0, 0.7071068f, 0, 0.7071068f)} // FourPlayer Player4 Position
         },
     };
 

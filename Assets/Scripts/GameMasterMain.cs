@@ -18,12 +18,16 @@ public class GameMasterMain : MonoBehaviour
     public int NumPlayers = 4;
     public Text HoverDebug;
 
+    // Required for game handling
+    public GameObject Player1;
+    public GameObject CommonBoard;
+
     // Debug Text Holders
     public string LastOver = "";
     public string LastNestInfo = "";
     public string NestInfo = "";
     public bool LastNestPossible = false;
-    
+
     // Unity Specific Holders
     public Plane DragPlane = new Plane(Vector3.down, 1.2f);
     public GameObject DragObject;
@@ -64,19 +68,31 @@ public class GameMasterMain : MonoBehaviour
     // Awake runs before start
     private void Awake()
     {
-        // Creates the one and only instance of GameMasterMain
+        // Sets the instance of GameMasterMain to this one
         Instance = this;
-        // TODO Spawn main board GameInfo.SpawnLocations[NumPlayers][0]
-        for (int i = 1; i <= NumPlayers; i++)
+    }
+
+    private void OnEnable()
+    {
+        // Set the common board to the correct spawn position
+        CommonBoard.transform.position = GameInfo.SpawnLocations[NumPlayers][0];
+        CommonBoard.transform.rotation = GameInfo.SpawnRoatations[NumPlayers][0];
+
+        // Set the player 1 board to the correct spawn position and add it to the GameInfo
+        Player1.transform.position = GameInfo.SpawnLocations[NumPlayers][1];
+        Player1.transform.rotation = GameInfo.SpawnRoatations[NumPlayers][1];
+        GameInfo.PlayerList.Add(Player1);
+        GameInfo.PlayerTurnOrder.Add(0);
+
+        for (int i = 2; i <= NumPlayers; i++)
         {
-            // TODO: Spawn players with Camereas
-            // GameObject _newPlayer = somethingsomething prefab
-            // TurnInfo.PlayerList.Add(_newPlayer);
-            //_newPlayer.transform.position = GameInfo.SpawnLocations[NumPlayers][i];
-            // Setup the initiative tracker
+            // Create the Player Prefab
+            GameObject _newPlayer = Instantiate(Player1,
+                                                GameInfo.SpawnLocations[NumPlayers][i],
+                                                GameInfo.SpawnRoatations[NumPlayers][i]);
+            GameInfo.PlayerList.Add(_newPlayer);
             GameInfo.PlayerTurnOrder.Add(i - 1);
         }
-
     }
 
     // Start is called before the first frame update

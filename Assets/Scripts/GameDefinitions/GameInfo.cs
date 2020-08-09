@@ -5,11 +5,13 @@ using UnityEngine;
 public class GameInfo
 {
     // Turn Logic Holders
-    public int RoundCounter = 1; // Display 
-    public int TurnCounter = 0; // Who in the turn order
-    public int PhaseCounter = 0; // Index of Phase.PhaseOrder
     public List<GameObject> PlayerList = new List<GameObject>();  // List of active players
-    public List<int> PlayerTurnOrder = new List<int>();  // ints represent player ID
+    
+    // An ordered list of PlayerList indices, can be thought of an iniative tracker 
+    public List<int> PlayerTurnOrder = new List<int>();
+    public int TurnCounter = 0; // The current turn in the phase (index of PlayerTurnOrder)
+    public int PhaseCounter = 0; // Index of the current phase
+    public int RoundCounter = 1; // What Round# this is
 
     // Phase order
     public static List<string> PhaseOrder = new List<string>()

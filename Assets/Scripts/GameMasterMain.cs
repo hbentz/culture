@@ -7,26 +7,59 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using System.Linq;
+using UnityEditor;
 
 public class GameMasterMain : MonoBehaviour
 {
     // Prevents additional instances of GameMasterMain
     public static GameMasterMain Instance;
     
-    public int PlayerIDTurn = 1;
+    // Game setting stuff
+    public int NumPlayers = 4;
     public Text HoverDebug;
-    public Plane DragPlane = new Plane(Vector3.down, 1.2f);
 
-    // Should only be proceduarlly set
+    // Debug Text Holders
     public string LastOver = "";
     public string LastNestInfo = "";
     public string NestInfo = "";
     public bool LastNestPossible = false;
-
-    public GameObject HoverItem;
+    
+    // Unity Specific Holders
+    public Plane DragPlane = new Plane(Vector3.down, 1.2f);
     public GameObject DragObject;
     public GameObject LastNestObject;
     public Ray CursorRay;
+
+    // Holds stuff like Round Counter and the like
+    public GameInfo GameInfo;
+
+    // Event Definitions
+    public delegate void HostAction(GameObject _child, GameObject _parent);
+    public static event HostAction OnHost;
+
+    public delegate void UnHostAction(GameObject _child, GameObject _parent);
+    public static event UnHostAction OnUnHost;
+
+    public delegate void TurnStartAction();
+    public static event TurnStartAction OnTurnStart;
+
+    public delegate void TurnEndAction();
+    public static event TurnEndAction OnTurnEnd;
+
+    public delegate void PhaseStartAction();
+    public static event PhaseStartAction OnPhaseStart;
+
+    public delegate void PhaseEndAction();
+    public static event PhaseEndAction OnPhaseEnd;
+
+    public delegate void ChallengeResolutionAction();
+    public static event ChallengeResolutionAction OnChallengeResolved;
+
+    public delegate void RoundStartAction();
+    public static event RoundStartAction OnRoundStart;
+
+    public delegate void RoundEndAction();
+    public static event RoundEndAction OnRoundEnd;
 
     // Awake runs before start
     private void Awake()

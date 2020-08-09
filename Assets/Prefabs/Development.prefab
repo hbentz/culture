@@ -173,6 +173,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7858623104954951677}
     m_Modifications:
+    - target: {fileID: 2489179223637198230, guid: c882f518c92d76247a9731f6ea7cd2e3,
+        type: 3}
+      propertyPath: HostableResources.Array.data[0]
+      value: ChallengeCard
+      objectReference: {fileID: 0}
     - target: {fileID: 5384056336687861075, guid: c882f518c92d76247a9731f6ea7cd2e3,
         type: 3}
       propertyPath: m_Name

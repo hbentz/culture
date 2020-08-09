@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class GameInfo
@@ -65,4 +66,9 @@ public class GameInfo
              Vector3.zero} // TODO SixPlayer Player6 Position
         },
     };
+
+    public GameObject GetActivePlayer()
+    {
+        return PlayerList[PlayerTurnOrder[TurnCounter]];
+    }
 }

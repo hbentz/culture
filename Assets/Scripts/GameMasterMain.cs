@@ -94,7 +94,25 @@ public class GameMasterMain : MonoBehaviour
         DebugOverlayText += LastOver;
         DebugOverlayText += LastNestInfo;
         DebugOverlayText += NestInfo;
+        DebugOverlayText += "\n" + "It's " + GameInfo.GetActivePlayer().name + "'s Turn";
+        DebugOverlayText += "\n" + "Phase: " + GameInfo.PhaseOrder[GameInfo.PhaseCounter];
+        DebugOverlayText += ", Turn: " + GameInfo.TurnCounter;
+
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
+    }
+    
+    public void EndTurn()
+    {
+        // Fire off the OnTurnEnd event
+        OnTurnEnd?.Invoke();
+
+        // If the turn counter would roll over
+        if (GameInfo.TurnCounter + 1 == NumPlayers)
+        {
+            OnPhaseEnd?.Invoke();
+            // TODO: Invoke On Round End if applicale
+        }
+        // TODO: Increment turns, phases, and rounds and Invoke
     }
 
     GameObject ObjectClimber(GameObject Child)

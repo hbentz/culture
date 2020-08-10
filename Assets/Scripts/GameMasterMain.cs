@@ -289,7 +289,10 @@ public class GameMasterMain : MonoBehaviour
                 LastNestInfo += " be nested together.";
 
                 // Preview the new location of the objects
-                LastNestObject.GetComponent<GameProperties>().RearrangeChildren(DragObject);
+                if (LastNestPossible)
+                {
+                    LastNestObject.GetComponent<GameProperties>().RearrangeChildren(DragObject);
+                }
             }
         }
     }

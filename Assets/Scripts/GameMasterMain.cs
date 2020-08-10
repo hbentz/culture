@@ -227,10 +227,28 @@ public class GameMasterMain : MonoBehaviour
             _objProps.IsDragging = false;
 
             NestInfo += "\n";
-            NestInfo += !LastNestPossible ?
-                "Cannot Host " : // If the last nest wasn't possible
-                LastNestObject.GetComponent<GameProperties>().Host(_eventGameObject) ? // If it was try to host
-                    "Hosted " : "Failed to Host "; // If/else the host was sucessful
+            if (LastNestPossible)
+            {
+                // Record the game object's old parent
+                GameObject _oldParent = _eventGameObject.transform.parent.gameObject;
+                if (LastNestObject.GetComponent<GameProperties>().Host(_eventGameObject))
+                {
+                    NestInfo += "Hosted ";
+
+                    // Fire off the OnUnHost and OnHost events
+                    OnUnHost?.Invoke(_eventGameObject.gameObject, _oldParent);
+                    OnHost?.Invoke(_eventGameObject, LastNestObject);
+                }
+                else
+                {
+                    NestInfo += "Failed to Host ";
+                }
+            }
+            else
+            {
+                NestInfo += "Cannot Host ";
+            }
+
             NestInfo += DragObject.name + " On " + LastNestObject.name;
             
             // Rearrange the object and its siblings on it's parent

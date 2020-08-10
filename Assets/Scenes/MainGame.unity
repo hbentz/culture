@@ -598,6 +598,7 @@ GameObject:
   - component: {fileID: 1797825474}
   - component: {fileID: 1797825473}
   - component: {fileID: 1797825475}
+  - component: {fileID: 1797825476}
   m_Layer: 0
   m_Name: Game Master
   m_TagString: Untagged
@@ -627,7 +628,9 @@ MonoBehaviour:
   LastNestPossible: 0
   DragObject: {fileID: 0}
   LastNestObject: {fileID: 0}
-  GameInfo: {fileID: 0}
+  CurrentPlayer: {fileID: 0}
+  ActiveCamera: {fileID: 0}
+  TurnState: {fileID: 0}
 --- !u!4 &1797825474
 Transform:
   m_ObjectHideFlags: 0
@@ -659,6 +662,18 @@ MonoBehaviour:
   TurnCounter: 0
   PhaseCounter: 0
   RoundCounter: 1
+--- !u!114 &1797825476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797825472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d03b412d2040da4cb5e282506059915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2040686972
 PrefabInstance:
   m_ObjectHideFlags: 0

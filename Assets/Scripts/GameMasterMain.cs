@@ -47,22 +47,22 @@ public class GameMasterMain : MonoBehaviour
     public delegate void TurnStartAction(GameObject ActivePlayer);
     public static event TurnStartAction OnTurnStart;
 
-    public delegate void TurnEndAction();
+    public delegate void TurnEndAction(GameObject ActivePlayer);
     public static event TurnEndAction OnTurnEnd;
 
-    public delegate void PhaseStartAction();
+    public delegate void PhaseStartAction(int PhaseID);
     public static event PhaseStartAction OnPhaseStart;
 
-    public delegate void PhaseEndAction();
+    public delegate void PhaseEndAction(int PhaseID);
     public static event PhaseEndAction OnPhaseEnd;
 
-    public delegate void ChallengeResolutionAction();
+    public delegate void ChallengeResolutionAction(GameObject ChallengeCard);
     public static event ChallengeResolutionAction OnChallengeResolved;
 
-    public delegate void RoundStartAction();
+    public delegate void RoundStartAction(int RoundNum);
     public static event RoundStartAction OnRoundStart;
 
-    public delegate void RoundEndAction();
+    public delegate void RoundEndAction(int RoundNum);
     public static event RoundEndAction OnRoundEnd;
 
     // Awake runs before start
@@ -98,6 +98,7 @@ public class GameMasterMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
     }
 
     // Keep all updates here for readability
@@ -122,19 +123,19 @@ public class GameMasterMain : MonoBehaviour
     public void EndTurn()
     {
         // Fire off the OnTurnEnd event
-        OnTurnEnd?.Invoke();
+        OnTurnEnd?.Invoke(GameInfo.GetActivePlayer());
 
         // If the turn counter would roll over
         if (GameInfo.TurnCounter + 1 == NumPlayers)
         {
             // Inoke the phase ennd event
-            OnPhaseEnd?.Invoke();
+            OnPhaseEnd?.Invoke(GameInfo.PhaseCounter);
             
             // If this is the last phase in the round
             if (GameInfo.PhaseCounter + 1  == GameInfo.PhaseOrder.Count())
             {
                 // Trigger the round end
-                OnRoundEnd?.Invoke();
+                OnRoundEnd?.Invoke(GameInfo.RoundCounter);
                 
                 // Reset all the counters
                 GameInfo.RoundCounter++;
@@ -145,8 +146,8 @@ public class GameMasterMain : MonoBehaviour
                 GameInfo.UpdatePlayerInitiative();
 
                 // Trigger the on round phase and turn start events
-                OnRoundStart?.Invoke();
-                OnPhaseStart?.Invoke();
+                OnRoundStart?.Invoke(GameInfo.RoundCounter);
+                OnPhaseStart?.Invoke(GameInfo.PhaseCounter);
                 OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
             }
             else
@@ -155,7 +156,7 @@ public class GameMasterMain : MonoBehaviour
                 GameInfo.PhaseCounter++;
                 GameInfo.TurnCounter = 0;
                 // Then invoke the phase start and turn start
-                OnPhaseStart?.Invoke();
+                OnPhaseStart?.Invoke(GameInfo.PhaseCounter);
                 OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
             }
         }

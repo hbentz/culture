@@ -32,6 +32,7 @@ public class PlayerBehaviours : MonoBehaviour
     public void UpdateCameraState(GameObject ActivePlayer)
     {
         // If this is the active player, enable the camera, otherwise disable it
-        CameraHolder.GetComponent<Camera>().enabled = ActivePlayer == this;
+        CameraHolder.GetComponent<Camera>().enabled = ActivePlayer == this.gameObject;
+        CameraHolder.GetComponent<AudioListener>().enabled = ActivePlayer == this.gameObject;
     }
 }

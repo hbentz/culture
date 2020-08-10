@@ -2,8 +2,11 @@
 using System.Dynamic;
 using UnityEngine;
 
-public class GameInfo
+public class TurnInfo : MonoBehaviour
 {
+    // Prevents additional instances of TurnInfo
+    public static TurnInfo Instance;
+
     // Turn Logic Holders
     public List<GameObject> PlayerList = new List<GameObject>();  // List of active players
     
@@ -91,5 +94,10 @@ public class GameInfo
             PlayerTurnOrder[i] = (PlayerTurnOrder[i] + 1) % PlayerTurnOrder.Count;
 
         }
+    }
+    private void Awake()
+    {
+        // Sets the instance of GameMasterMain to this one
+        Instance = this;
     }
 }

@@ -597,6 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797825474}
   - component: {fileID: 1797825473}
+  - component: {fileID: 1797825475}
   m_Layer: 0
   m_Name: Game Master
   m_TagString: Untagged
@@ -626,6 +627,7 @@ MonoBehaviour:
   LastNestPossible: 0
   DragObject: {fileID: 0}
   LastNestObject: {fileID: 0}
+  GameInfo: {fileID: 0}
 --- !u!4 &1797825474
 Transform:
   m_ObjectHideFlags: 0
@@ -640,6 +642,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1797825475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797825472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06f16dbf0545854390fc001a4267316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerList: []
+  PlayerTurnOrder: 
+  TurnCounter: 0
+  PhaseCounter: 0
+  RoundCounter: 1
 --- !u!1001 &2040686972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,7 +931,7 @@ PrefabInstance:
     - target: {fileID: 6821164649706026218, guid: 208affaad76ae95448c8daad3f0bfcbc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6821164649706026218, guid: 208affaad76ae95448c8daad3f0bfcbc,
         type: 3}
@@ -981,7 +1000,7 @@ PrefabInstance:
     - target: {fileID: 9072729263018490942, guid: 0c1c68f02dd62cb438426d4e32d7950a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9072729263018490942, guid: 0c1c68f02dd62cb438426d4e32d7950a,
         type: 3}

@@ -35,7 +35,7 @@ public class GameMasterMain : MonoBehaviour
     public Ray CursorRay;
 
     // Holds stuff like Round Counter and the like
-    public GameInfo GameInfo;
+    public TurnInfo TurnState;
 
     // Event Definitions
     public delegate void HostAction(GameObject _child, GameObject _parent);
@@ -74,31 +74,34 @@ public class GameMasterMain : MonoBehaviour
 
     private void OnEnable()
     {
-        // Set the common board to the correct spawn position
-        CommonBoard.transform.position = GameInfo.SpawnLocations[NumPlayers][0];
-        CommonBoard.transform.rotation = GameInfo.SpawnRoatations[NumPlayers][0];
+        // Grab the current Instance
+        TurnState = GetComponent<TurnInfo>();
 
-        // Set the player 1 board to the correct spawn position and add it to the GameInfo
-        Player1.transform.position = GameInfo.SpawnLocations[NumPlayers][1];
-        Player1.transform.rotation = GameInfo.SpawnRoatations[NumPlayers][1];
-        GameInfo.PlayerList.Add(Player1);
-        GameInfo.PlayerTurnOrder.Add(0);
+        // Set the common board to the correct spawn position
+        CommonBoard.transform.position = TurnState.SpawnLocations[NumPlayers][0];
+        CommonBoard.transform.rotation = TurnState.SpawnRoatations[NumPlayers][0];
+
+        // Set the player 1 board to the correct spawn position and add it to the TurnInfo
+        Player1.transform.position = TurnState.SpawnLocations[NumPlayers][1];
+        Player1.transform.rotation = TurnState.SpawnRoatations[NumPlayers][1];
+        TurnState.PlayerList.Add(Player1);
+        TurnState.PlayerTurnOrder.Add(0);
 
         for (int i = 2; i <= NumPlayers; i++)
         {
             // Create the Player Prefab
             GameObject _newPlayer = Instantiate(Player1,
-                                                GameInfo.SpawnLocations[NumPlayers][i],
-                                                GameInfo.SpawnRoatations[NumPlayers][i]);
-            GameInfo.PlayerList.Add(_newPlayer);
-            GameInfo.PlayerTurnOrder.Add(i - 1);
+                                                TurnState.SpawnLocations[NumPlayers][i],
+                                                TurnState.SpawnRoatations[NumPlayers][i]);
+            TurnState.PlayerList.Add(_newPlayer);
+            TurnState.PlayerTurnOrder.Add(i - 1);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
+        OnTurnStart?.Invoke(TurnState.GetActivePlayer());
     }
 
     // Keep all updates here for readability
@@ -108,14 +111,15 @@ public class GameMasterMain : MonoBehaviour
         string DebugOverlayText = "";
 
         // Figure out what the player it pointing at:
+        // TODO: Need to get the player's active camera!!!
         CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         DebugOverlayText += LastOver;
         DebugOverlayText += LastNestInfo;
         DebugOverlayText += NestInfo;
-        DebugOverlayText += "\n" + "It's " + GameInfo.GetActivePlayer().name + "'s Turn";
-        DebugOverlayText += "\n" + "Phase: " + GameInfo.PhaseOrder[GameInfo.PhaseCounter];
-        DebugOverlayText += ", Turn: " + GameInfo.TurnCounter;
+        DebugOverlayText += "\n" + "It's " + TurnState.GetActivePlayer().name + "'s Turn";
+        DebugOverlayText += "\n" + "Phase: " + TurnInfo.PhaseOrder[TurnState.PhaseCounter];
+        DebugOverlayText += ", Turn: " + TurnState.TurnCounter;
 
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
     }
@@ -123,48 +127,48 @@ public class GameMasterMain : MonoBehaviour
     public void EndTurn()
     {
         // Fire off the OnTurnEnd event
-        OnTurnEnd?.Invoke(GameInfo.GetActivePlayer());
+        OnTurnEnd?.Invoke(TurnState.GetActivePlayer());
 
         // If the turn counter would roll over
-        if (GameInfo.TurnCounter + 1 == NumPlayers)
+        if (TurnState.TurnCounter + 1 == NumPlayers)
         {
             // Inoke the phase ennd event
-            OnPhaseEnd?.Invoke(GameInfo.PhaseCounter);
+            OnPhaseEnd?.Invoke(TurnState.PhaseCounter);
             
             // If this is the last phase in the round
-            if (GameInfo.PhaseCounter + 1  == GameInfo.PhaseOrder.Count())
+            if (TurnState.PhaseCounter + 1  == TurnInfo.PhaseOrder.Count())
             {
                 // Trigger the round end
-                OnRoundEnd?.Invoke(GameInfo.RoundCounter);
+                OnRoundEnd?.Invoke(TurnState.RoundCounter);
                 
                 // Reset all the counters
-                GameInfo.RoundCounter++;
-                GameInfo.PhaseCounter = 0;
-                GameInfo.TurnCounter = 0;
+                TurnState.RoundCounter++;
+                TurnState.PhaseCounter = 0;
+                TurnState.TurnCounter = 0;
 
                 // Update the iniative:
-                GameInfo.UpdatePlayerInitiative();
+                TurnState.UpdatePlayerInitiative();
 
                 // Trigger the on round phase and turn start events
-                OnRoundStart?.Invoke(GameInfo.RoundCounter);
-                OnPhaseStart?.Invoke(GameInfo.PhaseCounter);
-                OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
+                OnRoundStart?.Invoke(TurnState.RoundCounter);
+                OnPhaseStart?.Invoke(TurnState.PhaseCounter);
+                OnTurnStart?.Invoke(TurnState.GetActivePlayer());
             }
             else
             {
                 // If the phase counter won't roll over Increment it
-                GameInfo.PhaseCounter++;
-                GameInfo.TurnCounter = 0;
+                TurnState.PhaseCounter++;
+                TurnState.TurnCounter = 0;
                 // Then invoke the phase start and turn start
-                OnPhaseStart?.Invoke(GameInfo.PhaseCounter);
-                OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
+                OnPhaseStart?.Invoke(TurnState.PhaseCounter);
+                OnTurnStart?.Invoke(TurnState.GetActivePlayer());
             }
         }
         else
         {
             // If the TurnOrder order tracker won't roll over
-            GameInfo.TurnCounter++;
-            OnTurnStart?.Invoke(GameInfo.GetActivePlayer());
+            TurnState.TurnCounter++;
+            OnTurnStart?.Invoke(TurnState.GetActivePlayer());
         }
     }
 

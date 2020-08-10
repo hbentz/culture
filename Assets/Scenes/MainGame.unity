@@ -316,7 +316,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -324,7 +324,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -867,19 +867,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6828310249890833320}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &30015453318027076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30015453318027075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6beba3aa8c313934f9c40bbc997bd374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraHolder: {fileID: 6828310249890833321}
 --- !u!1001 &6828310249890833320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -887,46 +874,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5510886035097082830, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510886035097082830, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510886035097082830, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510886035097082830, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510886035097082830, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510886035097082830, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510886035097082830, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 6323423941504599118, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerCamera
-      objectReference: {fileID: 0}
     - target: {fileID: 6821164649706026218, guid: 208affaad76ae95448c8daad3f0bfcbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -987,19 +934,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8829248173512660485, guid: 208affaad76ae95448c8daad3f0bfcbc,
-        type: 3}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 208affaad76ae95448c8daad3f0bfcbc, type: 3}
---- !u!1 &6828310249890833321 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6323423941504599118, guid: 208affaad76ae95448c8daad3f0bfcbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6828310249890833320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9072729264694785221
 PrefabInstance:
   m_ObjectHideFlags: 0

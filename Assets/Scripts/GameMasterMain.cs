@@ -33,6 +33,8 @@ public class GameMasterMain : MonoBehaviour
     public GameObject DragObject;
     public GameObject LastNestObject;
     public Ray CursorRay;
+    public GameObject CurrentPlayer;
+    public Camera ActiveCamera;
 
     // Holds stuff like Round Counter and the like
     public TurnInfo TurnState;
@@ -56,14 +58,17 @@ public class GameMasterMain : MonoBehaviour
     public delegate void PhaseEndAction(int PhaseID);
     public static event PhaseEndAction OnPhaseEnd;
 
-    public delegate void ChallengeResolutionAction(GameObject ChallengeCard);
-    public static event ChallengeResolutionAction OnChallengeResolved;
-
     public delegate void RoundStartAction(int RoundNum);
     public static event RoundStartAction OnRoundStart;
 
     public delegate void RoundEndAction(int RoundNum);
     public static event RoundEndAction OnRoundEnd;
+
+    public delegate void ChallengeSuccessAction(GameObject ChallengeCard);
+    public static event ChallengeSuccessAction OnChallengeSuccess;
+
+    public delegate void ChallengeFailAction(GameObject ChallengeCard);
+    public static event ChallengeFailAction OnChallengeFail;
 
     // Awake runs before start
     private void Awake()
@@ -111,8 +116,7 @@ public class GameMasterMain : MonoBehaviour
         string DebugOverlayText = "";
 
         // Figure out what the player it pointing at:
-        // TODO: Need to get the player's active camera!!!
-        CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        CursorRay = ActiveCamera.ScreenPointToRay(Input.mousePosition);
 
         DebugOverlayText += LastOver;
         DebugOverlayText += LastNestInfo;
@@ -170,6 +174,9 @@ public class GameMasterMain : MonoBehaviour
             TurnState.TurnCounter++;
             OnTurnStart?.Invoke(TurnState.GetActivePlayer());
         }
+        // Set the active player in an easy to access variable and update the camera
+        CurrentPlayer = TurnState.GetActivePlayer();
+        ActiveCamera = CurrentPlayer.GetComponent<PlayerBehaviours>().CameraHolder.GetComponent<Camera>();
     }
 
     GameObject ObjectClimber(GameObject Child)

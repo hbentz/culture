@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9072729263018490942}
   - component: {fileID: 9072729263018490937}
+  - component: {fileID: 1087702243}
   m_Layer: 0
   m_Name: CommonBoard
   m_TagString: Untagged
@@ -62,6 +63,18 @@ MonoBehaviour:
   HostedChildren: []
   IsDragable: 0
   IsDragging: 0
+--- !u!114 &1087702243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072729263018490943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899f123a635ae4d4d9611e3893f13f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9072729263024774453
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PickUpSound: {fileID: 0}
   PlaceSound: {fileID: 0}
-  ChildrenYOffset: 0.2
+  ChildrenYOffset: 0.1
   ResourceTypes:
   - GameBoard
   HostableResources:

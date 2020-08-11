@@ -83,6 +83,7 @@ public class GameProperties : MonoBehaviour
         {
             case 1:
                 HostedChildren[0].transform.localPosition = new Vector3(0, ChildrenYOffset, 0);
+                HostedChildren[0].transform.localRotation = new Quaternion(0, 0, 0, 1);
                 break;
             // TODO: Other cases
         }

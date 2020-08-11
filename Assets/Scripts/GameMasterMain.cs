@@ -116,7 +116,7 @@ public class GameMasterMain : MonoBehaviour
         string DebugOverlayText = "";
 
         // Figure out what the player it pointing at:
-        CursorRay = ActiveCamera.ScreenPointToRay(Input.mousePosition);
+        CursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         DebugOverlayText += LastOver;
         DebugOverlayText += LastNestInfo;
@@ -176,7 +176,6 @@ public class GameMasterMain : MonoBehaviour
         }
         // Set the active player in an easy to access variable and update the camera
         CurrentPlayer = TurnState.GetActivePlayer();
-        ActiveCamera = CurrentPlayer.GetComponent<PlayerBehaviours>().CameraHolder.GetComponent<Camera>();
     }
 
     GameObject ObjectClimber(GameObject Child)

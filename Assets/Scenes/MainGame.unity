@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: DebugCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -908,6 +908,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3445833114395242986, guid: 208affaad76ae95448c8daad3f0bfcbc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323423941504599118, guid: 208affaad76ae95448c8daad3f0bfcbc,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 6821164649706026218, guid: 208affaad76ae95448c8daad3f0bfcbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -967,6 +977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829248173512660485, guid: 208affaad76ae95448c8daad3f0bfcbc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 208affaad76ae95448c8daad3f0bfcbc, type: 3}

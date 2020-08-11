@@ -6,7 +6,6 @@ public class PlayerBehaviours : MonoBehaviour
 {
     // This player's camera's GameObject
     public GameObject CameraHolder;
-    public bool IsActivePlayer = false;
 
     private void OnEnable()
     {

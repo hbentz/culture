@@ -46,12 +46,12 @@ public class CustomEventLogger : MonoBehaviour
 
     void TurnStartLogger(GameObject ActivePlayer)
     {
-        Debug.Log("Turn Start Event Detected. It is now " + ActivePlayer + "'s Turn.");
+        Debug.Log("Turn Start Event Detected. It is now " + ActivePlayer.name + "'s Turn.");
     }
 
     void TurnEndLogger(GameObject ActivePlayer)
     {
-        Debug.Log("Turn End Event Detected. " + ActivePlayer + "'s Turn is over.");
+        Debug.Log("Turn End Event Detected. " + ActivePlayer.name + "'s Turn is over.");
     }
 
     void PhaseStartLogger(int PhaseID)

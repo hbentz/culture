@@ -380,18 +380,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9072729264694785221}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1087702243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087702242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899f123a635ae4d4d9611e3893f13f72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1149030584
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +509,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1675292856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9072729263024774453, guid: 0c1c68f02dd62cb438426d4e32d7950a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9072729264694785221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1675292857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675292856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8783b401490be428194449d06f6441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1768393215
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +635,6 @@ MonoBehaviour:
   DragObject: {fileID: 0}
   LastNestObject: {fileID: 0}
   CurrentPlayer: {fileID: 0}
-  ActiveCamera: {fileID: 0}
   TurnState: {fileID: 0}
 --- !u!4 &1797825474
 Transform:
@@ -1051,6 +1056,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CommonBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 9072729263024774455, guid: 0c1c68f02dd62cb438426d4e32d7950a,
+        type: 3}
+      propertyPath: ResourceMaxes.Array.data[0]
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c1c68f02dd62cb438426d4e32d7950a, type: 3}

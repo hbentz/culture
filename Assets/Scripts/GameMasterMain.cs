@@ -34,7 +34,6 @@ public class GameMasterMain : MonoBehaviour
     public GameObject LastNestObject;
     public Ray CursorRay;
     public GameObject CurrentPlayer;
-    public Camera ActiveCamera;
 
     // Holds stuff like Round Counter and the like
     public TurnInfo TurnState;

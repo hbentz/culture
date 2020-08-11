@@ -43,16 +43,16 @@ public class TurnInfo : MonoBehaviour
         },
         { 3, new List<Vector3>()
             {Vector3.zero, // ThreePlayer Player MainBoard Location
-             new Vector3(0, 0, -22), // ThreePlayer Player1 Position
-             new Vector3(-22, 0, 0), // ThreePlayer Player1 Position
-             new Vector3(0, 0, 22)} // ThreePlayer Player3 Position
+             new Vector3(0, 0, -24), // ThreePlayer Player1 Position
+             new Vector3(-24, 0, 0), // ThreePlayer Player1 Position
+             new Vector3(0, 0, 24)} // ThreePlayer Player3 Position
         },
         { 4, new List<Vector3>()
             {Vector3.zero, // FourPlayer Player MainBoard Location
-             new Vector3(0, 0, -22), // FourPlayer Player1 Position
-             new Vector3(-22, 0, 0), // ThreePlayer Player1 Position
-             new Vector3(0, 0, 22), // ThreePlayer Player3 Position
-             new Vector3(22, 0, 0)} // FourPlayer Player4 Position
+             new Vector3(0, 0, -24), // FourPlayer Player1 Position
+             new Vector3(-24, 0, 0), // ThreePlayer Player1 Position
+             new Vector3(0, 0, 24), // ThreePlayer Player3 Position
+             new Vector3(24, 0, 0)} // FourPlayer Player4 Position
         },
     };
 

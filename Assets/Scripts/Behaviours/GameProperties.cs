@@ -79,9 +79,12 @@ public class GameProperties : MonoBehaviour
     public void RearrangeChildren()
     {
         // Condier using GetComponent<Collider>().bounds.size
+        // TODO: Switch over this.resource_type
         switch (HostedChildren.Count())
         {
             case 1:
+                // TODO: for loop iterating over all children
+                // TODO: Figure out row patterns by if(i/row_size):
                 HostedChildren[0].transform.localPosition = new Vector3(0, ChildrenYOffset, 0);
                 HostedChildren[0].transform.localRotation = new Quaternion(0, 0, 0, 1);
                 break;

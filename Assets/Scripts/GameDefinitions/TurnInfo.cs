@@ -16,6 +16,20 @@ public class TurnInfo : MonoBehaviour
     public int PhaseCounter = 0; // Index of the current phase
     public int RoundCounter = 1; // What Round# this is
 
+    // TODO: Change implementation of phase order references to this
+    public class PhaseOrderInts
+    {
+        public int Setup = 0;
+        public int ChallengeSelection = 1;
+        public int Bidding = 2;
+        public int Drafting = 3;
+        public int Development = 4;
+        public int ResourceSpend = 5;
+        public int ResourceGain = 6;
+        public int ChallengeResolution = 7;
+        public int Cleanup = 8;
+    }
+
     // Phase order
     public static List<string> PhaseOrder = new List<string>()
     {

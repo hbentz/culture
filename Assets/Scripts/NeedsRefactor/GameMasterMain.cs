@@ -36,7 +36,7 @@ public class GameMasterMain : MonoBehaviour
     public GameObject CurrentPlayer;
 
     // Holds stuff like Round Counter and the like
-    public TurnInfo TurnState;
+    public _TurnInfo TurnState;
 
     // Event Definitions
     public delegate void HostAction(GameObject _child, GameObject _parent);
@@ -79,7 +79,7 @@ public class GameMasterMain : MonoBehaviour
     private void OnEnable()
     {
         // Grab the current Instance
-        TurnState = GetComponent<TurnInfo>();
+        TurnState = GetComponent<_TurnInfo>();
 
         // Set the common board to the correct spawn position
         CommonBoard.transform.position = TurnState.SpawnLocations[NumPlayers][0];
@@ -121,7 +121,7 @@ public class GameMasterMain : MonoBehaviour
         DebugOverlayText += LastNestInfo;
         DebugOverlayText += NestInfo;
         DebugOverlayText += "\n" + "It's " + TurnState.GetActivePlayer().name + "'s Turn";
-        DebugOverlayText += "\n" + "Phase: " + TurnInfo.PhaseOrder[TurnState.PhaseCounter];
+        DebugOverlayText += "\n" + "Phase: " + _TurnInfo.PhaseOrder[TurnState.PhaseCounter];
         DebugOverlayText += ", Turn: " + TurnState.TurnCounter;
 
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
@@ -139,7 +139,7 @@ public class GameMasterMain : MonoBehaviour
             OnPhaseEnd?.Invoke(TurnState.PhaseCounter);
             
             // If this is the last phase in the round
-            if (TurnState.PhaseCounter + 1  == TurnInfo.PhaseOrder.Count())
+            if (TurnState.PhaseCounter + 1  == _TurnInfo.PhaseOrder.Count())
             {
                 // Trigger the round end
                 OnRoundEnd?.Invoke(TurnState.RoundCounter);

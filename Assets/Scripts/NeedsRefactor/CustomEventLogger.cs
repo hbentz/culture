@@ -56,12 +56,12 @@ public class CustomEventLogger : MonoBehaviour
 
     void PhaseStartLogger(int PhaseID)
     {
-        Debug.Log("Phase Start Event Detected. " + TurnInfo.PhaseOrder[PhaseID] + " has begun.");
+        Debug.Log("Phase Start Event Detected. " + _TurnInfo.PhaseOrder[PhaseID] + " has begun.");
     }
 
     void PhaseEndLogger(int PhaseID)
     {
-        Debug.Log("Phase End Event Detected. " + TurnInfo.PhaseOrder[PhaseID] + " is over.");
+        Debug.Log("Phase End Event Detected. " + _TurnInfo.PhaseOrder[PhaseID] + " is over.");
     }
 
     void RoundStartLogger(int RoundNum)

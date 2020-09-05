@@ -2,10 +2,10 @@
 using System.Dynamic;
 using UnityEngine;
 
-public class TurnInfo : MonoBehaviour
+public class _TurnInfo : MonoBehaviour
 {
     // Prevents additional instances of TurnInfo
-    public static TurnInfo Instance;
+    public static _TurnInfo Instance;
 
     // Turn Logic Holders
     public List<GameObject> PlayerList = new List<GameObject>();  // List of active players

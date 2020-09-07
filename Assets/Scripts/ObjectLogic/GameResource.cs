@@ -3,5 +3,6 @@ using UnityEngine;
 
 public abstract class GameResource : MonoBehaviour
 {
+    public GameObject VisualComponent;
 
 }

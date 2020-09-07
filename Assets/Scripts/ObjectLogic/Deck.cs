@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
+    public GameObject VisualComponent;
     private LinkedList<Card> cards;
     public LinkedList<Card> Cards { get; }
 

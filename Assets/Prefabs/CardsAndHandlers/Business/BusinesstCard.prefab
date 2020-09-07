@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198e25eb4d344e47bf6a305869e36a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VisualComponent: {fileID: 937774611927534676}
   EnumCardType: 2
   HostableResources: 
   InvestorCredits: []

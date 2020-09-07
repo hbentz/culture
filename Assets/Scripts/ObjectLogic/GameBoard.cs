@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class GameBoard : MonoBehaviour
 {
+    public GameObject VisualComponent;
     public Dictionary<BoardType, List<GameBoard>> NestedBoards;
     public Dictionary<CardType, Dictionary<DeckType, List<Deck>>> CardHosts;
     public BoardType EnumBoardType;

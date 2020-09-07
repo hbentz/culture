@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd67323cd0925b948b6819ddce68c252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VisualComponent: {fileID: 2603336243456539463}
   MaxDeckSize: 1
   TopNCardsVisible: -1
   HostedCardType: 1

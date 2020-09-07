@@ -62,4 +62,10 @@ public class GameMaster : MonoBehaviour
         OnPhaseStarted?.Invoke();
         OnTurnStarted?.Invoke();
     }
+
+    public void EndTurn()
+    {
+        // When the turn is over
+        OnTurnEnded?.Invoke();
+    }
 }

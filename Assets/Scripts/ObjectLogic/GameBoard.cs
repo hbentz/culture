@@ -6,9 +6,11 @@ using UnityEngine;
 public abstract class GameBoard : MonoBehaviour
 {
     public GameObject VisualComponent;
+    public BoardType EnumBoardType;
+
+    // Dicts that hold references to objects nested on them
     public Dictionary<BoardType, List<GameBoard>> NestedBoards;
     public Dictionary<CardType, Dictionary<DeckType, List<Deck>>> CardHosts;
-    public BoardType EnumBoardType;
 
     /// <summary>
     /// Makes nPrefabs of prefab as a child of object where it's called

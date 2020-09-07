@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameWorker : MonoBehaviour
+public class GameWorker : Currency
 {
 }

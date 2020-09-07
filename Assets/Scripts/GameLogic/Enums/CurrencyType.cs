@@ -3,5 +3,7 @@
 	InvestorCredit,
 	IntellectualProperty,
 	PublicRelation,
-	EmployeeMotivation
+	EmployeeMotivation,
+	Manager,
+	Team
 }

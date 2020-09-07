@@ -8,5 +8,5 @@ public class Deck : MonoBehaviour
 
     public int MaxDeckSize = -1; // Unlimited
     public int TopNCardsVisible = 0;
-
+    public CardType HostedCardType;
 }

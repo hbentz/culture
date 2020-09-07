@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawner : MonoBehaviour
+public static class PlayerSpawnInfo
 {
-    public GameObject PlayerPrefab;
-
     // Dict<nPlayers, PlayerPositions>
-    public Dictionary<int, List<Vector3>> SpawnLocations = new Dictionary<int, List<Vector3>>()
+    public static Dictionary<int, List<Vector3>> SpawnLocations = new Dictionary<int, List<Vector3>>()
     {
         { 1, new List<Vector3>() { new Vector3(0, 0, -22) } }, // Single Player1 Position
 
@@ -30,7 +28,7 @@ public class PlayerSpawner : MonoBehaviour
     };
 
     // Dict<nPlayers, PlayerRotations>
-    public Dictionary<int, List<Quaternion>> SpawnRoatations = new Dictionary<int, List<Quaternion>>()
+    public static Dictionary<int, List<Quaternion>> SpawnRoatations = new Dictionary<int, List<Quaternion>>()
     {
         { 1, new List<Quaternion>() { new Quaternion(0, 0, 0, 1) } }, // Single Player1 Rotation
 
@@ -52,21 +50,4 @@ public class PlayerSpawner : MonoBehaviour
              new Quaternion(0, 0.7071068f, 0, 0.7071068f)} // FourPlayer Player4 Rotation
         },
     };
-
-    public LinkedList<Player> MakeNPlayers(int nPlayers)
-	{
-        LinkedList<Player> returnList = new LinkedList<Player>();
-
-        // Loop nPlayers times
-        for (int i = 0; i < nPlayers; i ++)
-        {
-            // Make a new player prefab with location and rotation as defined earlier
-            GameObject _newPlayer = Instantiate(PlayerPrefab, SpawnLocations[nPlayers][i], SpawnRoatations[nPlayers][i]);
-            
-            // Get the player component and add it to the return list
-            returnList.AddLast(_newPlayer.GetComponent<Player>());
-        }
-
-        return returnList;
-    }
 }

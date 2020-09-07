@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameMaster : MonoBehaviour
@@ -7,10 +8,14 @@ public class GameMaster : MonoBehaviour
     private static GameMaster instance = null;
     public static GameMaster Instance { get { return instance; } }
 
-    // GameState Stuff
-    public TurnInfo TurnState;
+    [Header("Game Settings")]
+    public static int NumPlayers;
 
-    // Turn Events in order in which they will occur
+    [Header("Refernce Objects")]
+    public SharedBoard CommonBoard;
+    public GameObject PlayerPrefab;
+
+    // Turn change events in the order they will be fired
     public delegate void RoundStart();
     public static event RoundStart OnRoundStarted;
 
@@ -33,5 +38,20 @@ public class GameMaster : MonoBehaviour
     {
         // Sets the instance of GameMasterMain to this one on game start
         instance = this;
+
+        // Spawn in the specified number of players
+        LinkedList<Player> _playerList = new LinkedList<Player>();
+        for (int i = 0; i < NumPlayers; i++)
+        {
+            // Make a new player prefab with location and rotation as defined earlier
+            GameObject _newPlayer = Instantiate(PlayerPrefab, PlayerSpawnInfo.SpawnLocations[NumPlayers][i], PlayerSpawnInfo.SpawnRoatations[NumPlayers][i]);
+
+            // Get the player component and add it to the return list
+            _playerList.AddLast(_newPlayer.GetComponent<Player>());
+        }
+
+        // Initialize the turn info
+        TurnInfo.Instance.PlayerOrder = _playerList;
+    }
     }
 }

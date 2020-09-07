@@ -53,5 +53,13 @@ public class GameMaster : MonoBehaviour
         // Initialize the turn info
         TurnInfo.Instance.PlayerOrder = _playerList;
     }
+
+    // Once everything has loaded
+    private void Start()
+    {
+        // Fire off the Round Phase and turn start events
+        OnRoundStarted?.Invoke();
+        OnPhaseStarted?.Invoke();
+        OnTurnStarted?.Invoke();
     }
 }

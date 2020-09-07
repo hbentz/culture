@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9072729263018490942}
-  - component: {fileID: 9072729263018490937}
-  - component: {fileID: 1087702243}
   m_Layer: 0
   m_Name: CommonBoard
   m_TagString: Untagged
@@ -44,41 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9072729263018490937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9072729263018490943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PickUpSound: {fileID: 0}
-  PlaceSound: {fileID: 0}
-  ChildrenYOffset: 0.1
-  ResourceTypes:
-  - GameBoard
-  HostableResources:
-  - Development
-  ResourceMaxes: 04000000
-  HostedChildren: []
-  IsDragable: 0
-  IsDragging: 0
---- !u!114 &1087702243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9072729263018490943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899f123a635ae4d4d9611e3893f13f72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9072729263024774453
 GameObject:
   m_ObjectHideFlags: 0

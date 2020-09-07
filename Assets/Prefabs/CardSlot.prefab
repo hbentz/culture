@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6515158168746975132}
   - component: {fileID: 5623205445818010645}
   - component: {fileID: 5767728164962003607}
-  - component: {fileID: 8880715217717343461}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -95,18 +94,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8880715217717343461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2603336243456539463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7876d554ce6096e4b886e5a81e6ddd12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5384056336687861075
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +103,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7144870746287235665}
-  - component: {fileID: 2489179223637198230}
   m_Layer: 0
   m_Name: CardSlot
   m_TagString: CardSlot
@@ -139,26 +125,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2489179223637198230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5384056336687861075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e96a14c83de5f140b72d81d0a85ece1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PickUpSound: {fileID: 0}
-  PlaceSound: {fileID: 0}
-  ChildrenYOffset: 0.1
-  ResourceTypes:
-  - CardSlot
-  HostableResources:
-  - Card
-  ResourceMaxes: 01000000
-  HostedChildren: []
-  IsDragable: 0
-  IsDragging: 0

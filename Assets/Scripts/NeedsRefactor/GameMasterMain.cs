@@ -35,9 +35,6 @@ public class GameMasterMain : MonoBehaviour
     public Ray CursorRay;
     public GameObject CurrentPlayer;
 
-    // Holds stuff like Round Counter and the like
-    public _TurnInfo TurnState;
-
     // Event Definitions
     public delegate void HostAction(GameObject _child, GameObject _parent);
     public static event HostAction OnHost;
@@ -79,33 +76,12 @@ public class GameMasterMain : MonoBehaviour
     private void OnEnable()
     {
         // Grab the current Instance
-        TurnState = GetComponent<_TurnInfo>();
-
-        // Set the common board to the correct spawn position
-        CommonBoard.transform.position = TurnState.SpawnLocations[NumPlayers][0];
-        CommonBoard.transform.rotation = TurnState.SpawnRoatations[NumPlayers][0];
-
-        // Set the player 1 board to the correct spawn position and add it to the TurnInfo
-        Player1.transform.position = TurnState.SpawnLocations[NumPlayers][1];
-        Player1.transform.rotation = TurnState.SpawnRoatations[NumPlayers][1];
-        TurnState.PlayerList.Add(Player1);
-        TurnState.PlayerTurnOrder.Add(0);
-
-        for (int i = 2; i <= NumPlayers; i++)
-        {
-            // Create the Player Prefab
-            GameObject _newPlayer = Instantiate(Player1,
-                                                TurnState.SpawnLocations[NumPlayers][i],
-                                                TurnState.SpawnRoatations[NumPlayers][i]);
-            TurnState.PlayerList.Add(_newPlayer);
-            TurnState.PlayerTurnOrder.Add(i - 1);
-        }
+        // TurnState = GetComponent<_TurnInfo>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        OnTurnStart?.Invoke(TurnState.GetActivePlayer());
     }
 
     // Keep all updates here for readability
@@ -120,62 +96,58 @@ public class GameMasterMain : MonoBehaviour
         DebugOverlayText += LastOver;
         DebugOverlayText += LastNestInfo;
         DebugOverlayText += NestInfo;
-        DebugOverlayText += "\n" + "It's " + TurnState.GetActivePlayer().name + "'s Turn";
-        DebugOverlayText += "\n" + "Phase: " + _TurnInfo.PhaseOrder[TurnState.PhaseCounter];
-        DebugOverlayText += ", Turn: " + TurnState.TurnCounter;
-
         HoverDebug.text = DebugOverlayText.Trim('\n', ' ');
     }
     
-    public void EndTurn()
-    {
-        // Fire off the OnTurnEnd event
-        OnTurnEnd?.Invoke(TurnState.GetActivePlayer());
+    //public void EndTurn()
+    //{
+    //    // Fire off the OnTurnEnd event
+    //    OnTurnEnd?.Invoke(TurnState.GetActivePlayer());
 
-        // If the turn counter would roll over
-        if (TurnState.TurnCounter + 1 == NumPlayers)
-        {
-            // Inoke the phase ennd event
-            OnPhaseEnd?.Invoke(TurnState.PhaseCounter);
+    //    // If the turn counter would roll over
+    //    if (TurnState.TurnCounter + 1 == NumPlayers)
+    //    {
+    //        // Inoke the phase ennd event
+    //        OnPhaseEnd?.Invoke(TurnState.PhaseCounter);
             
-            // If this is the last phase in the round
-            if (TurnState.PhaseCounter + 1  == _TurnInfo.PhaseOrder.Count())
-            {
-                // Trigger the round end
-                OnRoundEnd?.Invoke(TurnState.RoundCounter);
+    //        // If this is the last phase in the round
+    //        if (TurnState.PhaseCounter + 1  == _TurnInfo.PhaseOrder.Count())
+    //        {
+    //            // Trigger the round end
+    //            OnRoundEnd?.Invoke(TurnState.RoundCounter);
                 
-                // Reset all the counters
-                TurnState.RoundCounter++;
-                TurnState.PhaseCounter = 0;
-                TurnState.TurnCounter = 0;
+    //            // Reset all the counters
+    //            TurnState.RoundCounter++;
+    //            TurnState.PhaseCounter = 0;
+    //            TurnState.TurnCounter = 0;
 
-                // Update the iniative:
-                TurnState.UpdatePlayerInitiative();
+    //            // Update the iniative:
+    //            TurnState.UpdatePlayerInitiative();
 
-                // Trigger the on round phase and turn start events
-                OnRoundStart?.Invoke(TurnState.RoundCounter);
-                OnPhaseStart?.Invoke(TurnState.PhaseCounter);
-                OnTurnStart?.Invoke(TurnState.GetActivePlayer());
-            }
-            else
-            {
-                // If the phase counter won't roll over Increment it
-                TurnState.PhaseCounter++;
-                TurnState.TurnCounter = 0;
-                // Then invoke the phase start and turn start
-                OnPhaseStart?.Invoke(TurnState.PhaseCounter);
-                OnTurnStart?.Invoke(TurnState.GetActivePlayer());
-            }
-        }
-        else
-        {
-            // If the TurnOrder order tracker won't roll over
-            TurnState.TurnCounter++;
-            OnTurnStart?.Invoke(TurnState.GetActivePlayer());
-        }
-        // Set the active player in an easy to access variable and update the camera
-        CurrentPlayer = TurnState.GetActivePlayer();
-    }
+    //            // Trigger the on round phase and turn start events
+    //            OnRoundStart?.Invoke(TurnState.RoundCounter);
+    //            OnPhaseStart?.Invoke(TurnState.PhaseCounter);
+    //            OnTurnStart?.Invoke(TurnState.GetActivePlayer());
+    //        }
+    //        else
+    //        {
+    //            // If the phase counter won't roll over Increment it
+    //            TurnState.PhaseCounter++;
+    //            TurnState.TurnCounter = 0;
+    //            // Then invoke the phase start and turn start
+    //            OnPhaseStart?.Invoke(TurnState.PhaseCounter);
+    //            OnTurnStart?.Invoke(TurnState.GetActivePlayer());
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // If the TurnOrder order tracker won't roll over
+    //        TurnState.TurnCounter++;
+    //        OnTurnStart?.Invoke(TurnState.GetActivePlayer());
+    //    }
+    //    // Set the active player in an easy to access variable and update the camera
+    //    CurrentPlayer = TurnState.GetActivePlayer();
+    //}
 
     GameObject ObjectClimber(GameObject Child)
     {

@@ -781,8 +781,8 @@ Transform:
   m_LocalPosition: {x: 0.8932104, y: 6.861328, z: -3.8778076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 963194228}
   - {fileID: 1797825474}
+  - {fileID: 963194228}
   - {fileID: 1768393218}
   - {fileID: 1656416924}
   - {fileID: 1657760356}
@@ -870,7 +870,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 865609618}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &976632345
 PrefabInstance:
@@ -983,12 +983,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1087702242 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9072729263018490943, guid: 0c1c68f02dd62cb438426d4e32d7950a,
-    type: 3}
-  m_PrefabInstance: {fileID: 9072729264694785221}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1620292705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,8 +1298,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1797825474}
   - component: {fileID: 1797825473}
-  - component: {fileID: 1797825476}
-  - component: {fileID: 1797825475}
   m_Layer: 0
   m_Name: Game Master
   m_TagString: Untagged
@@ -1322,21 +1314,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1797825472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb413e785075694fac8951ec81fa489, type: 3}
+  m_Script: {fileID: 11500000, guid: 02cccd448c039ff46a58304bdc2ed6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumPlayers: 4
-  HoverDebug: {fileID: 807072960}
-  Player1: {fileID: 0}
-  CommonBoard: {fileID: 1087702242}
-  LastOver: 
-  LastNestInfo: 
-  NestInfo: 
-  LastNestPossible: 0
-  DragObject: {fileID: 0}
-  LastNestObject: {fileID: 0}
-  CurrentPlayer: {fileID: 0}
-  TurnState: {fileID: 0}
 --- !u!4 &1797825474
 Transform:
   m_ObjectHideFlags: 0
@@ -1349,37 +1329,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 865609618}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1797825475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797825472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe115c3f0125a44e9862512efa693b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerList: []
-  PlayerTurnOrder: 
-  TurnCounter: 0
-  PhaseCounter: 0
-  RoundCounter: 1
---- !u!114 &1797825476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797825472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d03b412d2040da4cb5e282506059915, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2004580530
 GameObject:
   m_ObjectHideFlags: 0

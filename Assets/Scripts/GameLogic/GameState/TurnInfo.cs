@@ -72,6 +72,8 @@ public sealed class TurnInfo
     public bool AdvancePhase()
     {
         // Returns false if the phase cycle has been reset, otherwise true
+        TurnCounter = 0;
+
         // If this last phase
         if (currentPhase.Next == null)
         {

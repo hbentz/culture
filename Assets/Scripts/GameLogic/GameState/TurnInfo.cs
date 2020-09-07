@@ -45,15 +45,16 @@ public sealed class TurnInfo
         get { return playerOrder; }
         set
         {
-            playerOrder = PlayerOrder;
-            // If the player order is empty, set the activePlayer to be the first player
-            if (playerOrder.Count == 0) activePlayer = playerOrder.First;
+            // If the current player order is empty, set the activePlayer to be the first player
+            if (playerOrder.Count == 0) activePlayer = PlayerOrder.First;
             else
             {
                 // Otherwise if the active player is still in the game, it's still their turn, otherwise it's the first player in the list
                 if (playerOrder.Contains(activePlayer.Value)) activePlayer = playerOrder.Find(activePlayer.Value);
                 else activePlayer = playerOrder.First;
             }
+
+            playerOrder = PlayerOrder;
         }
     }
 

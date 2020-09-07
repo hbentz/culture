@@ -4,10 +4,10 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-public sealed class GameInfo
+public sealed class TurnInfo
 {
     // The cosntructor for GameInfo is private so only this class can create instances of itself
-    private GameInfo()
+    private TurnInfo()
     {
         // Create the phase list
         Phase[] phases = { Phase.Start, Phase.Drafting, Phase.ResourceAllocation, Phase.ChallengeResolution, Phase.ChallengeSelection, Phase.End };
@@ -23,13 +23,13 @@ public sealed class GameInfo
         CurrentRound = 0;
     }
 
-    private static GameInfo instance = null;
-    public static GameInfo Instance
+    private static TurnInfo instance = null;
+    public static TurnInfo Instance
     {
         // Get the current instance of this class if there is one, otherwise create it
         get
         {
-            if (instance == null) instance = new GameInfo();
+            if (instance == null) instance = new TurnInfo();
             return instance;
         }
     }

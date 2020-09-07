@@ -44,10 +44,13 @@ public class GameMaster : MonoBehaviour
         for (int i = 0; i < NumPlayers; i++)
         {
             // Make a new player prefab with location and rotation as defined earlier
-            GameObject _newPlayer = Instantiate(PlayerPrefab, PlayerSpawnInfo.SpawnLocations[NumPlayers][i], PlayerSpawnInfo.SpawnRoatations[NumPlayers][i]);
-
-            // Get the player component and add it to the return list
-            _playerList.AddLast(_newPlayer.GetComponent<Player>());
+            GameObject _newPlayerObj = Instantiate(PlayerPrefab, PlayerSpawnInfo.SpawnLocations[NumPlayers][i], PlayerSpawnInfo.SpawnRoatations[NumPlayers][i]);
+            
+            // Set the player name and ID upon spawn and then add it to the list
+            Player _newPlayer = _newPlayerObj.GetComponent<Player>();
+            _newPlayer.name = $"Player {i + 1}";
+            _newPlayer.PlayerID = i + 1;
+            _playerList.AddLast(_newPlayer);
         }
 
         // Initialize the turn info

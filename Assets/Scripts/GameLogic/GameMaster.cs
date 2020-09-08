@@ -39,23 +39,27 @@ public class GameMaster : MonoBehaviour
     {
         // Sets the instance of GameMasterMain to this one on game start
         instance = this;
+    }
 
+    private void OnEnable()
+    {
         // Spawn in the specified number of players
-        LinkedList<Player> _playerList = new LinkedList<Player>();
+        Player[] _playerList = new Player[NumPlayers];
         for (int i = 0; i < NumPlayers; i++)
         {
             // Make a new player prefab with location and rotation as defined earlier
             GameObject _newPlayerObj = Instantiate(PlayerPrefab, PlayerSpawnInfo.SpawnLocations[NumPlayers][i], PlayerSpawnInfo.SpawnRoatations[NumPlayers][i]);
-            
+
             // Set the player name and ID upon spawn and then add it to the list
             Player _newPlayer = _newPlayerObj.GetComponent<Player>();
             _newPlayer.name = $"Player {i + 1}";
+            _newPlayer.PlayerName = $"Player {i + 1}";
             _newPlayer.PlayerID = i + 1;
-            _playerList.AddLast(_newPlayer);
+            _playerList[i] = (_newPlayer);
         }
 
         // Initialize the turn info
-        TurnInfo.Instance.PlayerOrder = _playerList;
+        TurnInfo.Instance.UpdatePlayerTurnOrder(_playerList);
     }
 
     // Once everything has loaded

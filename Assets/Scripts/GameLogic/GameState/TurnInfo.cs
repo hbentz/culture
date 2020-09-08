@@ -40,28 +40,22 @@ public sealed class TurnInfo
     private LinkedList<Player> playerOrder; // The turn order of all the players
     private LinkedListNode<Player> activePlayer; // Whose turn it is
 
-    public LinkedList<Player> PlayerOrder
-    {
-        get { return playerOrder; }
-        set
-        {
-            // If the current player order is empty, set the activePlayer to be the first player
-            if (playerOrder.Count == 0) activePlayer = PlayerOrder.First;
-            else
-            {
-                // Otherwise if the active player is still in the game, it's still their turn, otherwise it's the first player in the list
-                if (playerOrder.Contains(activePlayer.Value)) activePlayer = playerOrder.Find(activePlayer.Value);
-                else activePlayer = playerOrder.First;
-            }
-
-            playerOrder = PlayerOrder;
-        }
-    }
-
+    public LinkedList<Player> PlayerOrder { get; private set; }
     public int CurrentRound { get; private set; } // How many rounds have completed since the start of the game
     public int TurnCounter { get; private set; } // How many turns have completed in this phase
     public Phase CurrentPhase { get { return currentPhase.Value;  } } // The current phase enum
     public Player ActivePlayer { get { return activePlayer.Value; } } // The Player whose turn it is
+
+    public void UpdatePlayerTurnOrder(Player[] newTurnOrder)
+    {
+        // Update the player order
+        playerOrder = new LinkedList<Player>(newTurnOrder);
+
+        // If the current player order is empty, set the activePlayer to be the first player
+        activePlayer = (activePlayer == null)? playerOrder.First :
+            // Otherwise if the active player is still in the game, it's still their turn, otherwise it's the first player in the list
+            (playerOrder.Contains(activePlayer.Value)) ? playerOrder.Find(activePlayer.Value) : playerOrder.First;
+    }
 
     public void AdvancePlayerTurn()
     {

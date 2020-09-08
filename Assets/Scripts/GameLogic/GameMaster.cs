@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameMaster : MonoBehaviour
@@ -9,7 +10,7 @@ public class GameMaster : MonoBehaviour
     public static GameMaster Instance { get { return instance; } }
 
     [Header("Game Settings")]
-    public static int NumPlayers;
+    public int NumPlayers;
 
     [Header("Refernce Objects")]
     public SharedBoard CommonBoard;

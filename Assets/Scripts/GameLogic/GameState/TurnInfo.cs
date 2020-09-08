@@ -60,7 +60,8 @@ public sealed class TurnInfo
 
     public void AdvancePlayerTurn()
     {
-        activePlayer = activePlayer.Next;
+        // If the activePlayer is the end of the list go back to the first, otherwise go next
+        activePlayer = (activePlayer.Next == null)? playerOrder.First : activePlayer.Next;
         TurnCounter++;
     }
 

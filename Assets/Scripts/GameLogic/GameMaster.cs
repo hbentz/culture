@@ -75,5 +75,12 @@ public class GameMaster : MonoBehaviour
     {
         // When the turn is over
         OnTurnEnded?.Invoke();
+
+        // (TODO) check if the phase should be over
+
+        // Advance the turn and fire the new turn
+        TurnInfo.Instance.AdvancePlayerTurn();
+        
+        OnTurnStarted?.Invoke();
     }
 }

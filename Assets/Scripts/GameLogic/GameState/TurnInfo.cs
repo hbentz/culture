@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public sealed class TurnInfo
@@ -19,8 +20,8 @@ public sealed class TurnInfo
         // Set the publicly available properties
         currentPhase = phaseOrder.First;
 
-        TurnCounter = 0;
-        CurrentRound = 0;
+        TurnCounter = 1;
+        CurrentRound = 1;
     }
 
     private static TurnInfo instance = null;
@@ -66,7 +67,7 @@ public sealed class TurnInfo
     public bool AdvancePhase()
     {
         // Returns false if the phase cycle has been reset, otherwise true
-        TurnCounter = 0;
+        TurnCounter = 1;
 
         // If this last phase
         if (currentPhase.Next == null)

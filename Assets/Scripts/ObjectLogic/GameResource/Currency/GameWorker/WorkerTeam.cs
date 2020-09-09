@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-public class Manager : GameWorker
+public class WorkerTeam : GameWorker
 {
 }

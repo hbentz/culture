@@ -4,6 +4,6 @@
 	IntellectualProperty,
 	PublicRelation,
 	EmployeeMotivation,
-	Manager,
-	Team
+	WorkerManager,
+	WorkerTeam
 }

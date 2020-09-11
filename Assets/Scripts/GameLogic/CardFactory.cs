@@ -5,7 +5,10 @@ using UnityEngine;
 public class CardFactory : MonoBehaviour
 {
     public GameObject GenericCardPrefab;
-    
+
+    private static CardFactory instance = null;
+    public static CardFactory Instance { get { return instance; } }
+
     // Objects that 
     public Dictionary<CardType, Dictionary<CardTrigger, Action>> PrefixEffects = new Dictionary<CardType, Dictionary<CardTrigger, Action>>();
     public Dictionary<CardType, Dictionary<CardTrigger, Action>> SuffixEffects = new Dictionary<CardType, Dictionary<CardTrigger, Action>>();
@@ -18,5 +21,10 @@ public class CardFactory : MonoBehaviour
         // Give it a card and get the reference to it
         Card _newCard = _newCardObject.AddComponent(CardReference.CardLookup[_name]) as Card;
         return _newCard;
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
 }

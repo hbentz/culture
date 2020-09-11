@@ -34,6 +34,6 @@ public abstract class GameBoard : MonoBehaviour
         return returnList;
     }
 
-    public abstract void HostGameResource(GameResource _resource);
+    //public abstract void HostGameResource(GameResource _resource);
 }
 

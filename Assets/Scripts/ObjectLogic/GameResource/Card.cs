@@ -35,4 +35,6 @@ public abstract class Card : GameResource
     public Action<int> TurnEndEffect;
     public Action<Phase> PhaseEndEffect;
     public Action<int> RoundEndEffect;
+
+    public abstract void DoWhenPlayed(Card card, Player player);
 }

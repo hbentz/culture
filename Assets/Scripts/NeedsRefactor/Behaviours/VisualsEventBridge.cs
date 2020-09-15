@@ -11,6 +11,7 @@ public class VisualsEventBridge : MonoBehaviour
     }
     private void OnMouseExit()
     {
+        //this.transform.parent.gameObject.GetComponent<GameResource>().WhenClicked();
         GameMasterMain.Instance.GenericUnHover(this.transform.parent.gameObject);
     }
     private void OnMouseDown()

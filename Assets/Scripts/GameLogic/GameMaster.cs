@@ -35,6 +35,9 @@ public class GameMaster : MonoBehaviour
     public delegate void RoundEnd();
     public static event RoundEnd OnRoundEnded;
 
+    public delegate void OnCardPlay(Card card, Player player);
+    public static event OnCardPlay OnCardPlayed;
+
     private void Awake()
     {
         // Sets the instance of GameMasterMain to this one on game start

@@ -20,6 +20,7 @@ public class CardFactory : MonoBehaviour
 
         // Give it a card and get the reference to it
         Card _newCard = _newCardObject.AddComponent(CardReference.CardLookup[_name]) as Card;
+        GameMaster.OnCardPlayed += _newCard.DoWhenPlayed;
         return _newCard;
     }
 

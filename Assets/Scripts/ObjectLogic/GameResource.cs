@@ -5,4 +5,5 @@ public abstract class GameResource : MonoBehaviour
 {
     public GameObject VisualComponent;
 
+    //public abstract void WhenClicked();
 }
